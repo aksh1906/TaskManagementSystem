@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">TaskManagementSystem</string>
+
+    <!-- LoginActivity-->
+
+    <string name="text_login">Login</string>
+    <color name="dark_grey">#616161</color>
+    <string name="text_incorrect_username_password">Incorrect Username or Password!</string>
+    <string name="text_username">Username:</string>
+    <string name="edit_username">Enter your username</string>
+    <string name="text_password">Password:</string>
+    <string name="edit_password">Enter your password</string>
+    <string name="image_desc">Desc</string>
+    <string name="button_rememberme">Remember Me</string>
+    <string name="button_submit">Submit</string>
+    <string name="placeholder">Hello</string>
+    <string name="text_forgot_username_password">Forgot username or password?</string>
+
+    <!-- Login Activity Ends -->
+
+    <!-- =========================================================================================== -->
+
+    <!-- CreateTaskActivity -->
+
+    <string name="title_create_new_task">Create New Task</string>
+    <string name="text_create_new_task">Create New Task</string>
+    <string name="text_task_title">Title</string>
+    <string name="edit_task_title">Enter task title</string>
+    <string name="text_task_type">Type</string>
+    <string-array name="array_task_types">
+        <item>Select an item</item>
+        <item>Type1</item>
+        <item>Type2</item>
+    </string-array>
+
+    <!-- CreateTaskActivity Ends -->
+</resources>
