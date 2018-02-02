@@ -24,14 +24,71 @@
 
     <string name="title_create_new_task">Create New Task</string>
     <string name="text_create_new_task">Create New Task</string>
-    <string name="text_task_title">Title</string>
-    <string name="edit_task_title">Enter task title</string>
-    <string name="text_task_type">Type</string>
-    <string-array name="array_task_types">
-        <item>Select an item</item>
+    <string name="text_task_subject">Subject:</string>
+    <string name="edit_task_subject">Enter task subject</string>
+    <string name="text_task_category">Category:</string>
+    <string-array name="array_task_categories">
         <item>Type1</item>
         <item>Type2</item>
     </string-array>
+    <string name="text_task_description">Description:</string>
+    <string name="edit_task_description">(Max. 100 characters)</string>
+    <string name="text_planned_finish_date">Planned Finish Date:</string>
+    <string name="edit_planned_finish_date">(DD-MM-YYYY)</string>
+    <string name="text_priority">Priority:</string>
+    <string-array name="array_priority">
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
+    <string name="text_responsible">Responsible:</string>
+    <string name="edit_responsible">Person Responsible</string>
+    <string name="text_accountable">Accountable:</string>
+    <string name="edit_accountable">Person Accountable</string>
+    <string name="text_project">Concerned Project:</string>
+    <string name="edit_project">Project Name</string>
+    <string name="text_department">Concerned Department:</string>
+    <string name="edit_department">Department Name</string>
+    <string name="text_team_name">Team Name:</string>
+    <string name="edit_team_name">Name</string>
 
     <!-- CreateTaskActivity Ends -->
+
+
+    <!--CreateMeetingActivity Starts-->
+
+    <string name="title_create_new_meeting">Create New Meeting</string>
+    <string name="text_meeting_title">Title:</string>
+    <string name="edit_meeting_title">Meeting Title</string>
+    <string name="text_meeting_type">Type:</string>
+    <string-array name="array_meeting_types">
+        <item>Type1</item>
+        <item>Type2</item>
+    </string-array>
+    <string name="text_meeting_description">Description</string>
+    <string name="edit_meeting_description">(Max 100 characters)</string>
+    <string name="text_conducted_for">Conducted For:</string>
+    <string name="edit_conducted_for">Conducted For?</string>
+    <string name="text_meeting_frequency">Frequency:</string>
+    <string-array name="array_meeting_frequency">
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
+    </string-array>
+    <string name="text_meeting_date">Date:</string>
+    <string name="edit_meeting_date">DD/MM/YYYY</string>
+    <string name="text_meeting_time">Time:</string>
+    <string name="edit_meeting_time">hh:mm</string>
+    <string name="text_meeting_venue">Venue:</string>
+    <string name="edit_meeting_venue">Venue</string>
+    <string name="text_ltr_participants">LTR Participants</string>
+    <string name="edit_ltr_participants">Add</string>
+    <string name="text_external_participants">External Participants</string>
+    <string name="edit_external_participants">Add</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--CreateMeetingActivity Ends-->
 </resources>
