@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#fbc02d</color>
+    <color name="colorPrimaryLight">#fff263</color>
     <color name="colorPrimaryDark">#c49000</color>
     <color name="colorAccent">#FF4081</color>
     <color name="login_page_text_color">#fbc02d</color>
     <color name="invalid_username_password">#ff0000</color>
     <color name="forgot_username_password">#2196f3</color>
     <color name="hint_color">#29434e</color>
+    <color name="colorBackground">#9e9e9e</color>
 </resources>

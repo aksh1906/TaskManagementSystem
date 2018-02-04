@@ -51,6 +51,28 @@
     <string name="edit_department">Department Name</string>
     <string name="text_team_name">Team Name:</string>
     <string name="edit_team_name">Name</string>
+    <string name="text_reminder_required">Is Reminder Required?</string>
+    <string-array name="array_reminder_required">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="text_task_status">Task Status</string>
+    <string-array name="array_task_status">
+        <item>To be started</item>
+        <item>Ongoing</item>
+        <item>Complete</item>
+    </string-array>
+    <string name="text_percent_complete">% Complete</string>
+    <string-array name="array_percent_complete">
+        <item>0% complete</item>
+        <item>25% complete</item>
+        <item>50% complete</item>
+        <item>75% complete</item>
+    </string-array>
+    <string name="text_remarks">Remarks</string>
+    <string name="edit_remarks">(Max. 100 characters)</string>
+    <string name="button_submit_create_task">Submit</string>
+    <string name="button_cancel_create_task">Cancel</string>
 
     <!-- CreateTaskActivity Ends -->
 
