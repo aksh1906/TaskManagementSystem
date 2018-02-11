@@ -1,320 +1,323 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/dark_grey"
-    tools:context=".CreateMeetingActivity">
+    tools:context=".CreateMeetingActivity"
+    android:orientation="vertical"
+    android:fillViewport="false">
 
-    <ScrollView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:fillViewport="false">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tbCreateNewMeeting"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <TextView
+                android:id="@+id/tvCreateNewMeeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/title_create_new_meeting"
+                android:textColor="@color/dark_grey"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                tools:layout_editor_absoluteX="153dp"
+                tools:layout_editor_absoluteY="18dp" />
+        </android.support.v7.widget.Toolbar>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/tbCreateNewMeeting"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                android:elevation="4dp"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-                <TextView
-                    android:id="@+id/tvCreateNewMeeting"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/title_create_new_meeting"
-                    android:textColor="@color/dark_grey"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:typeface="normal"
-                    tools:layout_editor_absoluteX="153dp"
-                    tools:layout_editor_absoluteY="18dp" />
-            </android.support.v7.widget.Toolbar>
+            android:layout_height="match_parent"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:baselineAligned="false"
-                android:orientation="horizontal">
+                android:layout_weight="0.6"
+                android:orientation="vertical"
+                android:paddingBottom="24dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="24dp">
+
+                <TextView
+                    android:id="@+id/tvMeetingTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="@string/text_meeting_title"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvMeetingType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/text_meeting_type"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvMeetingDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="50dp"
+                    android:text="@string/text_meeting_description"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvConductedFor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="50dp"
+                    android:text="@string/text_conducted_for"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvMeetingFrequency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/text_meeting_frequency"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvMeetingDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/text_meeting_date"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvMeetingTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/text_meeting_time"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvMeetingVenue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/text_meeting_venue"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvParticipants"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/text_participants"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingBottom="18dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="18dp">
+
+                <EditText
+                    android:id="@+id/etMeetingTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="start"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:hint="@string/edit_meeting_title"
+                    android:inputType="text"
+                    android:maxLength="20"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/hint_color" />
+
+                <Spinner
+                    android:id="@+id/spinnerMeetingType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="16dp" />
+
+                <EditText
+                    android:id="@+id/etMeetingDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="14dp"
+                    android:hint="@string/edit_meeting_description"
+                    android:inputType="textMultiLine"
+                    android:maxLength="100" />
+
+                <EditText
+                    android:id="@+id/etConductedFor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="18dp"
+                    android:hint="@string/edit_conducted_for"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/hint_color" />
+
+                <Spinner
+                    android:id="@+id/spinnerMeetingFrequency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="20dp">
+                </Spinner>
+
+                <FrameLayout
+                    android:id="@+id/dateViewer"
+                    android:name="com.ltr.taskmanagementsystem.CreateMeetingActivity$DatePickerFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tvDatePicker"
+                    style="@android:style/Widget.DeviceDefault.Light.Spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_gravity="start"
+                    android:hint="@string/edit_meeting_date"
+                    android:onClick="showDatePickerDialog"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="18sp"
+                    android:typeface="normal" />
+
+                <FrameLayout
+                    android:id="@+id/timeViewer"
+                    android:name="com.ltr.taskmanagementsystem.CreateMeetingActivity$DatePickerFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tvTimePicker"
+                    style="@android:style/Widget.DeviceDefault.Light.Spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_gravity="start"
+                    android:hint="@string/edit_meeting_time"
+                    android:onClick="showTimePickerDialog"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="18sp"
+                    android:typeface="normal" />
+
+                <EditText
+                    android:id="@+id/etMeetingVenue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="start"
+                    android:hint="@string/edit_meeting_venue"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/hint_color"/>
+
+                <EditText
+                    android:id="@+id/etParticipants"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="start"
+                    android:hint="@string/edit_participants"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/hint_color"/>
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.6"
-                    android:orientation="vertical"
-                    android:paddingBottom="24dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:paddingTop="24dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tvMeetingTitle"
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:text="@string/text_meeting_title"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:paddingTop="50dp"
+                        android:paddingRight="15dp"
+                        android:paddingBottom="15dp">
 
-                    <TextView
-                        android:id="@+id/tvMeetingType"
+                        <Button
+                            android:id="@+id/btnCancel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginTop="40dp"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:backgroundTint="@color/dark_grey"
+                            android:text="@string/button_cancel_create_task"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="24dp"
-                        android:text="@string/text_meeting_type"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp" />
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:paddingTop="50dp"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="15dp">
 
-                    <TextView
-                        android:id="@+id/tvMeetingDescription"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="50dp"
-                        android:text="@string/text_meeting_description"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp" />
+                        <Button
+                            android:id="@+id/btnSubmit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginTop="40dp"
+                            android:background="@drawable/button_rounded_corners_disabled"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:text="@string/button_submit_create_task"
+                            android:textAlignment="center"
+                            android:textColor="@color/dark_grey"
+                            android:textSize="16sp"
+                            android:gravity="center_vertical"/>
 
-                    <TextView
-                        android:id="@+id/tvConductedFor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="50dp"
-                        android:text="@string/text_conducted_for"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvMeetingFrequency"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="32dp"
-                        android:text="@string/text_meeting_frequency"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvMeetingDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="24dp"
-                        android:text="@string/text_meeting_date"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvMeetingTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="30dp"
-                        android:text="@string/text_meeting_time"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvMeetingVenue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="24dp"
-                        android:text="@string/text_meeting_venue"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvLtrParticipants"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="20dp"
-                        android:text="@string/text_ltr_participants"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvExternalParticipants"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="28dp"
-                        android:text="@string/text_external_participants"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingBottom="18dp"
-                    android:paddingLeft="24dp"
-                    android:paddingRight="24dp"
-                    android:paddingTop="18dp">
-
-                    <EditText
-                        android:id="@+id/etMeetingTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_gravity="start"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:hint="@string/edit_meeting_title"
-                        android:inputType="text"
-                        android:maxLength="20"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@color/hint_color" />
-
-                    <Spinner
-                        android:id="@+id/spinnerMeetingType"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="16dp" />
-
-                    <EditText
-                        android:id="@+id/etMeetingDescription"
-                        android:layout_width="wrap_content"
-                        android:layout_height="80dp"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="14dp"
-                        android:hint="@string/edit_meeting_description"
-                        android:inputType="textMultiLine"
-                        android:maxLength="100" />
-
-                    <EditText
-                        android:id="@+id/etConductedFor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="20dp"
-                        android:hint="@string/edit_conducted_for"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@color/hint_color" />
-
-                    <Spinner
-                        android:id="@+id/spinnerMeetingFrequency"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="20dp">
-                    </Spinner>
-
-                    <FrameLayout
-                        android:id="@+id/dateViewer"
-                        android:name="com.ltr.taskmanagementsystem.CreateMeetingActivity$DatePickerFragment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:id="@+id/etDatePicker"
-                        style="@android:style/Widget.DeviceDefault.Light.Spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
-                        android:hint="@string/edit_meeting_date"
-                        android:onClick="showDatePickerDialog"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@color/hint_color"
-                        android:textSize="18sp"
-                        android:typeface="normal" />
-
-                    <FrameLayout
-                        android:id="@+id/timeViewer"
-                        android:name="com.ltr.taskmanagementsystem.CreateMeetingActivity$DatePickerFragment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:id="@+id/etTimePicker"
-                        style="@android:style/Widget.DeviceDefault.Light.Spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:hint="@string/edit_meeting_time"
-                        android:onClick="showTimePickerDialog"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@color/hint_color"
-                        android:textSize="18sp"
-                        android:typeface="normal" />
-
-                    <Spinner
-                        android:id="@+id/spinnerPriority"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="33dp"></Spinner>
-
-                    <EditText
-                        android:id="@+id/etResponsible"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
-                        android:hint="@string/edit_responsible"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@color/hint_color" />
-
-                    <EditText
-                        android:id="@+id/etAccountable"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:hint="@string/edit_accountable"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@color/hint_color" />
-
-                    <EditText
-                        android:id="@+id/etProject"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="12dp"
-                        android:hint="@string/edit_project"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@color/hint_color" />
-
-                    <EditText
-                        android:id="@+id/etDepartment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="16dp"
-                        android:hint="@string/edit_department"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@color/hint_color" />
-
-                    <EditText
-                        android:id="@+id/etTeamName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="14dp"
-                        android:hint="@string/edit_team_name"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@color/hint_color" />
-
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
-</android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>

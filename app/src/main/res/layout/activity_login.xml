@@ -40,12 +40,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/invalid_username_password"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:text="Hello"/>
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tvUsername"
@@ -121,7 +119,7 @@
             android:layout_marginTop="20dp"
             android:text="@string/text_forgot_username_password"
             android:textColor="@color/forgot_username_password"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:visibility="gone"/>
 
     </LinearLayout>

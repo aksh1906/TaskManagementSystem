@@ -104,10 +104,8 @@
     <string name="edit_meeting_time">hh:mm</string>
     <string name="text_meeting_venue">Venue:</string>
     <string name="edit_meeting_venue">Venue</string>
-    <string name="text_ltr_participants">LTR Participants</string>
-    <string name="edit_ltr_participants">Add</string>
-    <string name="text_external_participants">External Participants</string>
-    <string name="edit_external_participants">Add</string>
+    <string name="text_participants">Participants</string>
+    <string name="edit_participants">Add</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
