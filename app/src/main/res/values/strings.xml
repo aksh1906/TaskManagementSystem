@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TaskManagementSystem</string>
+    <string name="app_name">Task Management System</string>
     <string name="text_task_priority">Priority:</string>
     <string name="text_exp_finish_date">Exp. Finish Date:</string>
 
@@ -25,7 +25,6 @@
     <!-- Main Activity Starts -->
     <string name="title_home">Home</string>
     <string name="text_current_tasks">Currently Ongoing Tasks</string>
-
 
 
     <!-- Main Activity Ends -->
@@ -133,4 +132,18 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--CreateMeetingActivity Ends-->
+
+    <!-- =========================================================================================== -->
+
+    <!--Navigation Drawer items-->
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
+    <string name="action_settings">Settings</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_tasks">Tasks</string>
+    <string name="nav_meetings">Meetings</string>
+    <string name="nav_view_tasks">View Tasks</string>
+    <string name="nav_create_task">Create Task</string>
+    <string name="nav_view_meetings">View Meetings</string>
+    <string name="nav_create_meeting">Create Meeting</string>
 </resources>
