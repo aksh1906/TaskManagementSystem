@@ -5,6 +5,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.util.Date;
 
@@ -29,10 +30,10 @@ import java.util.Date;
 )
 public class Task {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name="task_id")
-    private int mTask_id;
+    public int mTask_id;
     
     @ColumnInfo(name="subject")
     private String mSubject;
@@ -43,11 +44,11 @@ public class Task {
     @ColumnInfo(name="date_created")
     private String mDate_created;
 
-//    @ColumnInfo(name="exp_finish_date")
-//    private String mExp_finish_date;
-//
-//    @ColumnInfo(name="actual_finish_date")
-//    private String mActual_finish_date;
+    @ColumnInfo(name="exp_finish_date")
+    private String mExp_finish_date;
+
+    @ColumnInfo(name="actual_finish_date")
+    private String mActual_finish_date;
 
     @ColumnInfo(name="status")
     private String mStatus;
@@ -58,8 +59,8 @@ public class Task {
     @ColumnInfo(name="category")
     private String mCategory;
 
-//    @ColumnInfo(name="creator")
-//    private String mCreator;
+    @ColumnInfo(name="creator")
+    private String mCreator;
 
     @ColumnInfo(name="responsible")
     private String mResponsible;
@@ -73,28 +74,43 @@ public class Task {
     @ColumnInfo(name="concerned_project")
     private String mConcerned_project;
 
-//    @ColumnInfo(name="meeting_linked_with")
-//    private String mMeeting_linked_with;
+    @ColumnInfo(name="remarks")
+    private String mRemarks;
 
-    public Task(int task_id, String subject, String priority, String date_created,
-                String status, String description, String category,
-                String responsible, String accountable, String concerned_dept,
-                String concerned_project) {
-        this.mTask_id = task_id;
+    @ColumnInfo(name="meeting_linked_with")
+    private String mMeeting_linked_with;
+
+    @ColumnInfo(name="reminder_required")
+    private String mReminder_required;
+
+    @ColumnInfo(name="percent_complete")
+    private String mPercent_complete;
+
+    public Task(String subject, String priority, String date_created,
+                String exp_finish_date, String status, String description,
+                String category, String responsible, String accountable,
+                String concerned_dept, String concerned_project, String remarks,
+                String actual_finish_date, String creator, String meeting_linked_with,
+                String reminder_required, String percent_complete) {
+
         this.mSubject = subject;
         this.mPriority = priority;
         this.mDate_created = date_created;
+        this.mExp_finish_date = exp_finish_date;
         this.mStatus = status;
         this.mDescription = description;
+        this.mReminder_required = reminder_required;
         this.mCategory = category;
         this.mResponsible = responsible;
         this.mAccountable = accountable;
+        this.mPercent_complete = percent_complete;
         this.mConcerned_dept = concerned_dept;
         this.mConcerned_project = concerned_project;
+        this.mRemarks = remarks;
+        this.mActual_finish_date = actual_finish_date;
+        this.mCreator = creator;
+        this.mMeeting_linked_with = meeting_linked_with;
     }
-
-    @NonNull
-    public int getTask_id() { return mTask_id; }
 
     public String getSubject() { return mSubject; }
 
@@ -102,9 +118,9 @@ public class Task {
 
     public String getDate_created() { return mDate_created; }
 
-//    public String getExp_finish_date() { return mExp_finish_date; }
-//
-//    public String getActual_finish_date() { return mActual_finish_date; }
+    public String getExp_finish_date() { return mExp_finish_date; }
+
+    public String getActual_finish_date() { return mActual_finish_date; }
 
     public String getStatus() { return mStatus; }
 
@@ -112,7 +128,7 @@ public class Task {
 
     public String getCategory() { return mCategory; }
 
-//    public String getCreator() { return mCreator; }
+    public String getCreator() { return mCreator; }
 
     public String getResponsible() { return mResponsible; }
 
@@ -122,5 +138,11 @@ public class Task {
 
     public String getConcerned_project() { return mConcerned_project; }
 
-//    public String getMeeting_linked_with() { return mMeeting_linked_with; }
+    public String getRemarks() { return mRemarks; }
+
+    public String getMeeting_linked_with() { return mMeeting_linked_with; }
+
+    public String getReminder_required() { return mReminder_required; }
+
+    public String getPercent_complete() { return mPercent_complete; }
 }

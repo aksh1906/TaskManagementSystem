@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_grey"
+    android:background="@color/colorBackground"
     tools:context=".CreateTaskActivity">
 
     <ScrollView
@@ -55,7 +55,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.6"
+                    android:layout_weight="0.65"
                     android:orientation="vertical"
                     android:paddingBottom="24dp"
                     android:paddingLeft="16dp"
@@ -68,7 +68,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:text="@string/text_task_subject"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorLabels"
                         android:textSize="18sp" />
 
                     <TextView
@@ -78,7 +78,7 @@
                         android:layout_gravity="start"
                         android:layout_marginTop="24dp"
                         android:text="@string/text_task_category"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorLabels"
                         android:textSize="18sp" />
 
                     <TextView
@@ -88,7 +88,7 @@
                         android:layout_gravity="start"
                         android:layout_marginTop="50dp"
                         android:text="@string/text_task_description"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorLabels"
                         android:textSize="18sp" />
 
                     <TextView
@@ -98,7 +98,7 @@
                         android:layout_gravity="start"
                         android:layout_marginTop="50dp"
                         android:text="@string/text_planned_finish_date"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorLabels"
                         android:textSize="18sp" />
 
                     <TextView
@@ -108,7 +108,7 @@
                         android:layout_gravity="start"
                         android:layout_marginTop="24dp"
                         android:text="@string/text_priority"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorLabels"
                         android:textSize="18sp" />
 
                     <TextView
@@ -118,7 +118,7 @@
                         android:layout_gravity="start"
                         android:layout_marginTop="24dp"
                         android:text="@string/text_responsible"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorLabels"
                         android:textSize="18sp" />
 
                     <TextView
@@ -128,7 +128,7 @@
                         android:layout_gravity="start"
                         android:layout_marginTop="30dp"
                         android:text="@string/text_accountable"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorLabels"
                         android:textSize="18sp" />
 
                     <TextView
@@ -138,7 +138,7 @@
                         android:layout_gravity="start"
                         android:layout_marginTop="24dp"
                         android:text="@string/text_project"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorLabels"
                         android:textSize="18sp" />
 
                     <TextView
@@ -148,7 +148,7 @@
                         android:layout_gravity="start"
                         android:layout_marginTop="20dp"
                         android:text="@string/text_department"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorLabels"
                         android:textSize="18sp" />
 
                     <TextView
@@ -158,47 +158,47 @@
                         android:layout_gravity="start"
                         android:layout_marginTop="28dp"
                         android:text="@string/text_team_name"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorLabels"
                         android:textSize="18sp" />
 
-                    <TextView
-                        android:id="@+id/tvReminderRequired"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="24dp"
-                        android:text="@string/text_reminder_required"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp"/>
+                    <!--<TextView-->
+                        <!--android:id="@+id/tvReminderRequired"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_gravity="start"-->
+                        <!--android:layout_marginTop="24dp"-->
+                        <!--android:text="@string/text_reminder_required"-->
+                        <!--android:textColor="@color/colorLabels"-->
+                        <!--android:textSize="18sp"/>-->
 
-                    <TextView
-                        android:id="@+id/tvTaskStatus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="24dp"
-                        android:text="@string/text_task_status"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp"/>
+                    <!--<TextView-->
+                        <!--android:id="@+id/tvTaskStatus"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_gravity="start"-->
+                        <!--android:layout_marginTop="24dp"-->
+                        <!--android:text="@string/text_task_status"-->
+                        <!--android:textColor="@color/colorLabels"-->
+                        <!--android:textSize="18sp"/>-->
 
-                    <TextView
-                        android:id="@+id/tvPercentComplete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="24dp"
-                        android:text="@string/text_percent_complete"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp"/>
+                    <!--<TextView-->
+                        <!--android:id="@+id/tvPercentComplete"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_gravity="start"-->
+                        <!--android:layout_marginTop="24dp"-->
+                        <!--android:text="@string/text_percent_complete"-->
+                        <!--android:textColor="@color/colorLabels"-->
+                        <!--android:textSize="18sp"/>-->
 
                     <TextView
                         android:id="@+id/tvRemarks"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="40dp"
                         android:text="@string/text_remarks"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorLabels"
                         android:textSize="18sp"/>
 
                 </LinearLayout>
@@ -215,15 +215,14 @@
 
                     <EditText
                         android:id="@+id/etTaskSubject"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_gravity="start"
                         android:backgroundTint="@color/colorPrimary"
                         android:hint="@string/edit_task_subject"
                         android:inputType="text"
                         android:maxLength="20"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@color/hint_color" />
+                        android:textColor="@color/colorText" />
 
                     <Spinner
                         android:id="@+id/spinnerTaskCategory"
@@ -234,14 +233,15 @@
 
                     <EditText
                         android:id="@+id/etTaskDescription"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="80dp"
                         android:layout_gravity="start"
                         android:layout_marginTop="14dp"
                         android:hint="@string/edit_task_description"
                         android:inputType="textMultiLine"
                         android:maxLength="100"
-                        android:textColor="@android:color/white" />
+                        android:textColor="@color/colorText"
+                        android:backgroundTint="@color/colorPrimary" />
 
                     <FrameLayout
                         android:id="@+id/viewer"
@@ -254,11 +254,10 @@
                         style="@android:style/Widget.DeviceDefault.Light.Spinner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginTop="35dp"
                         android:hint="@string/edit_planned_finish_date"
                         android:onClick="showDatePickerDialog"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@color/hint_color"
+                        android:textColor="@color/colorText"
                         android:textSize="18sp"
                         android:typeface="normal" />
 
@@ -267,93 +266,99 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:layout_marginTop="33dp" />
+                        android:layout_marginTop="34dp"
+                        android:textColor="@color/colorText"/>
 
                     <EditText
                         android:id="@+id/etResponsible"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/colorText"
                         android:hint="@string/edit_responsible"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@color/hint_color" />
+                        android:maxLength="30"
+                        android:backgroundTint="@color/colorPrimary"/>
 
                     <EditText
                         android:id="@+id/etAccountable"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:hint="@string/edit_accountable"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@color/hint_color" />
+                        android:maxLength="30"
+                        android:textColor="@color/colorText"
+                        android:backgroundTint="@color/colorPrimary"/>
 
                     <EditText
                         android:id="@+id/etProject"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:layout_marginTop="12dp"
                         android:hint="@string/edit_project"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@color/hint_color" />
+                        android:maxLength="20"
+                        android:textColor="@color/colorText"
+                        android:backgroundTint="@color/colorPrimary"/>
 
                     <EditText
                         android:id="@+id/etDepartment"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:layout_marginTop="16dp"
                         android:hint="@string/edit_department"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@color/hint_color" />
+                        android:maxLength="20"
+                        android:textColor="@color/colorText"
+                        android:backgroundTint="@color/colorPrimary"/>
 
                     <EditText
                         android:id="@+id/etTeamName"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:layout_marginTop="25dp"
+                        android:layout_marginTop="20dp"
+                        android:maxLength="20"
                         android:hint="@string/edit_team_name"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@color/hint_color" />
+                        android:textColor="@color/colorText"
+                        android:backgroundTint="@color/colorPrimary"/>
 
-                    <Spinner
-                        android:id="@+id/spinnerReminderRequired"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="24dp" />
+                    <!--<Spinner-->
+                        <!--android:id="@+id/spinnerReminderRequired"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_gravity="start"-->
+                        <!--android:layout_marginTop="24dp" />-->
 
-                    <Spinner
-                        android:id="@+id/spinnerTaskStatus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="35dp" />
+                    <!--<Spinner-->
+                        <!--android:id="@+id/spinnerTaskStatus"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_gravity="start"-->
+                        <!--android:layout_marginTop="35dp" />-->
 
-                    <Spinner
-                        android:id="@+id/spinnerPercentComplete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:layout_marginTop="24dp" />
+                    <!--<Spinner-->
+                        <!--android:id="@+id/spinnerPercentComplete"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_gravity="start"-->
+                        <!--android:layout_marginTop="24dp" />-->
 
                     <EditText
                         android:id="@+id/etRemarks"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:layout_marginTop="16dp"
                         android:hint="@string/edit_remarks"
                         android:inputType="textMultiLine"
                         android:maxLength="100"
-                        android:textColor="@android:color/white"
-                        android:textColorHint="@color/hint_color" />
+                        android:textColor="@color/colorText"
+                        android:backgroundTint="@color/colorPrimary"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal" android:baselineAligned="false">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -383,7 +388,7 @@
                             android:layout_weight="0.5"
                             android:paddingTop="50dp"
                             android:paddingBottom="15dp"
-                            android:paddingLeft="15dp">
+                            android:paddingStart="15dp">
 
                             <Button
                                 android:id="@+id/btnSubmit"

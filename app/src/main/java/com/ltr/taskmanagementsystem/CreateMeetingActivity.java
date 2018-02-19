@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -28,6 +30,7 @@ public class CreateMeetingActivity extends AppCompatActivity
     public EditText etMeetingTitle, etMeetingDescription, etConductedFor, etMeetingVenue, etParticipants;
     public Spinner spinnerMeetingType, spinnerMeetingFrequency;
     public TextView tvDatePicker, tvTimePicker;
+    public AutoCompleteTextView actvParticipants;
     public Button btnSubmit, btnCancel;
     public String meetingTitle, meetingDescription, conductedFor, meetingVenue;
     public String meetingType, meetingFrequency, meetingDate, meetingTime;
@@ -44,6 +47,7 @@ public class CreateMeetingActivity extends AppCompatActivity
         etMeetingVenue = findViewById(R.id.etMeetingVenue);
         tvDatePicker = findViewById(R.id.tvDatePicker);
         tvTimePicker = findViewById(R.id.tvTimePicker);
+        actvParticipants = findViewById(R.id.actvParticipants);
         btnCancel = findViewById(R.id.btnCancel);
         btnSubmit = findViewById(R.id.btnSubmit);
 
@@ -72,6 +76,11 @@ public class CreateMeetingActivity extends AppCompatActivity
                 this, R.array.array_meeting_types, R.layout.spinner);
         spinnerMeetingTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMeetingType.setAdapter(spinnerMeetingTypeAdapter);
+
+        String[] placeholder = getResources().getStringArray(R.array.placeholder_participants);
+        ArrayAdapter<String> actvParticipantsAdapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_list_item_1, placeholder);
+        actvParticipants.setAdapter(actvParticipantsAdapter);
 
         // get a new or existing ViewModel from the ViewModelProvider
         mAppViewModel = ViewModelProviders.of(this).get(AppViewModel.class);

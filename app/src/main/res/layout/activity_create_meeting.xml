@@ -256,15 +256,24 @@
                     android:textColor="@android:color/white"
                     android:textColorHint="@color/hint_color"/>
 
-                <EditText
-                    android:id="@+id/etParticipants"
+                <!--<EditText-->
+                    <!--android:id="@+id/etParticipants"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="8dp"-->
+                    <!--android:layout_gravity="start"-->
+                    <!--android:hint="@string/edit_participants"-->
+                    <!--android:textColor="@android:color/white"-->
+                    <!--android:textColorHint="@color/hint_color"/>-->
+                
+                <AutoCompleteTextView
+                    android:id="@+id/actvParticipants"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_gravity="start"
-                    android:hint="@string/edit_participants"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="@color/hint_color"/>
+                    android:completionThreshold="2"
+                    android:hint="(Add Participant)"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/white"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -273,7 +282,7 @@
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="0.5"
                         android:paddingTop="50dp"
                         android:paddingRight="15dp"
@@ -295,7 +304,7 @@
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="0.5"
                         android:paddingTop="50dp"
                         android:paddingBottom="15dp"

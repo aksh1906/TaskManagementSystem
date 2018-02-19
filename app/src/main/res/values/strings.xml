@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">TaskManagementSystem</string>
+    <string name="text_task_priority">Priority:</string>
+    <string name="text_exp_finish_date">Exp. Finish Date:</string>
 
     <!-- LoginActivity-->
 
@@ -17,6 +19,16 @@
     <string name="text_forgot_username_password">Forgot username or password?</string>
 
     <!-- Login Activity Ends -->
+
+    <!-- =========================================================================================== -->
+
+    <!-- Main Activity Starts -->
+    <string name="title_home">Home</string>
+    <string name="text_current_tasks">Currently Ongoing Tasks</string>
+
+
+
+    <!-- Main Activity Ends -->
 
     <!-- =========================================================================================== -->
 
@@ -105,7 +117,17 @@
     <string name="text_meeting_venue">Venue:</string>
     <string name="edit_meeting_venue">Venue</string>
     <string name="text_participants">Participants</string>
-    <string name="edit_participants">Add</string>
+    <string name="edit_participants">(Add Participants)</string>
+
+    <!--Placeholder -->
+    <string-array name="placeholder_participants">
+        <item>Abc</item>
+        <item>Def</item>
+        <item>Ade</item>
+        <item>Are</item>
+        <item>Pqr</item>
+        <item>Pxz</item>
+    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

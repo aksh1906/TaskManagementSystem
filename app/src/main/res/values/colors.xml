@@ -8,5 +8,7 @@
     <color name="invalid_username_password">#ff0000</color>
     <color name="forgot_username_password">#2196f3</color>
     <color name="hint_color">#29434e</color>
-    <color name="colorBackground">#9e9e9e</color>
+    <color name="colorBackground">#eeeeee</color>
+    <color name="colorLabels">#424242</color>
+    <color name="colorText">#6d6d6d</color>
 </resources>
