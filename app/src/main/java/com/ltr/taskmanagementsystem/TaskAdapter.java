@@ -35,7 +35,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     @Override
     public TaskViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.activity_main_cards, parent, false);
+        View view = mInflater.inflate(R.layout.card_view_task, parent, false);
         return new TaskViewHolder(view);
     }
 
@@ -46,8 +46,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             holder.tvTaskName.setText(current.getSubject());
             holder.tvPriority.setText(current.getPriority());
             holder.tvExpFinishDate.setText(current.getExp_finish_date());
-        } else {
-            holder.tvTaskName.setText("No Task");
         }
     }
 

@@ -1,11 +1,9 @@
 package com.ltr.taskmanagementsystem;
 
 import android.app.Activity;
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -15,47 +13,117 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.AdapterView;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class ViewAllTasksActivity extends AppCompatActivity {
+
+    private Spinner spinnerRole;
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
     private SmoothActionBarDrawerToggle mDrawerToggle;
-    private Toolbar toolbar;
+    private Toolbar mToolbar;
     private TextView toolbarTitle;
     private FloatingActionButton fab;
     private RecyclerView recyclerView;
     private AppViewModel mAppViewModel;
-    private LiveData<List<Task>> ongoingTasks;
     Intent intent;
+    TaskAdapter adapter;
     private static final int CREATE_TASK_ACTIVITY_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_view_all_tasks);
+
+        spinnerRole = findViewById(R.id.spinner_responsible_accountable);
+        ArrayAdapter<CharSequence> spinnerRoleAdapter = ArrayAdapter.createFromResource(
+                this, R.array.array_responsible_accountable, R.layout.spinner);
+        spinnerRoleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerRole.setAdapter(spinnerRoleAdapter);
 
         createFAB();
         createToolbar();
         createNavigationDrawer();
         setupDrawerListener();
-        createRecyclerView();
+        spinnerSelectedItemListener();
     }
 
-    // setup the toolbar
+    private void spinnerSelectedItemListener() {
+        spinnerRole.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String selectedItem = parentView.getItemAtPosition(position).toString();
+                if(selectedItem.equals("Responsible")) {
+                    getTasksResponsibleFor();
+                } else if(selectedItem.equals("Accountable")) {
+                    getTasksAccountableFor();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                //
+            }
+        });
+    }
+
+    public void getTasksResponsibleFor() {
+        recyclerView = findViewById(R.id.recyclerview);
+        adapter = new TaskAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mAppViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
+        try {
+            mAppViewModel.getAllResponsibleTasks().observe(this, new Observer<List<Task>>() {
+                @Override
+                public void onChanged(@Nullable List<Task> tasks) {
+                    adapter.setTasks(tasks);
+                }
+            });
+        } catch (Exception e) {
+            //
+        }
+
+    }
+
+    public void getTasksAccountableFor() {
+        recyclerView = findViewById(R.id.recyclerview);
+        adapter = new TaskAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mAppViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
+        try {
+            mAppViewModel.getAllAccountableTasks().observe(this, new Observer<List<Task>>() {
+                @Override
+                public void onChanged(@Nullable List<Task> tasks) {
+                    adapter.setTasks(tasks);
+                }
+            });
+        } catch (Exception e) {
+            //
+        }
+    }
+
+    // create the toolbar
     private void createToolbar() {
-        toolbar = findViewById(R.id.tb_main_activity);
-        setSupportActionBar(toolbar);
+        mToolbar = findViewById(R.id.tb_main_activity);
+        setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(null); // remove the default title for the toolbar
         toolbarTitle = findViewById(R.id.toolbar_title);
-        toolbarTitle.setText("Home");
+        toolbarTitle.setText("View All Tasks");
 
         // add the navigation drawer button to the toolbar
         ActionBar ab = getSupportActionBar();
@@ -112,32 +180,32 @@ public class MainActivity extends AppCompatActivity {
 
     // set the DrawerListener
     private void setupDrawerListener() {
-        mDrawerToggle = new SmoothActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
+        mDrawerToggle = new SmoothActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
     private void selectItem(int position) {
         switch (position) {
             case R.id.nav_home:
-                closeNavDrawer();
-                break;
-
-            case R.id.nav_view_tasks:
                 mDrawerToggle.runWhenIdle(new Runnable() {
                     @Override
                     public void run() {
-                        intent = new Intent(MainActivity.this, ViewAllTasksActivity.class);
+                        intent = new Intent(ViewAllTasksActivity.this, MainActivity.class);
                         startActivity(intent);
                     }
                 });
                 mDrawerLayout.closeDrawers();
                 break;
 
+            case R.id.nav_view_tasks:
+                closeNavDrawer();
+                break;
+
             case R.id.nav_create_task:
                 mDrawerToggle.runWhenIdle(new Runnable() {
                     @Override
                     public void run() {
-                        intent = new Intent(MainActivity.this, CreateTaskActivity.class);
+                        intent = new Intent(ViewAllTasksActivity.this, CreateTaskActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -152,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
                 mDrawerToggle.runWhenIdle(new Runnable() {
                     @Override
                     public void run() {
-                        intent = new Intent(MainActivity.this, CreateMeetingActivity.class);
+                        intent = new Intent(ViewAllTasksActivity.this, CreateMeetingActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -165,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CreateTaskActivity.class);
+                Intent intent = new Intent(ViewAllTasksActivity.this, CreateTaskActivity.class);
                 startActivityForResult(intent, CREATE_TASK_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -173,24 +241,20 @@ public class MainActivity extends AppCompatActivity {
 
     // setup the recyclerview used to show the cards
     // containing brief info about the user's currently ongoing tasks
-    private void createRecyclerView() {
-        recyclerView = findViewById(R.id.recyclerview);
-        final TaskAdapter adapter = new TaskAdapter(this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        mAppViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
-        try {
-            mAppViewModel.getOngoingTasks().observe(this, new Observer<List<Task>>() {
-                @Override
-                public void onChanged(@Nullable final List<Task> tasks) {
-                    adapter.setTasks(tasks);
-                }
-            });
-        } catch (Exception e) {
-            //
-        }
-    }
+//    private void createRecyclerView() {
+//        recyclerView = findViewById(R.id.recyclerview);
+//        adapter = new TaskAdapter(this);
+//        recyclerView.setAdapter(adapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//
+//        mAppViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
+//        if(spinnerRole.getSelectedItem() == "Responsible") {
+//            getTasksResponsibleFor();
+//        } else if(spinnerRole.getSelectedItem() == "Accountable") {
+//            getTasksAccountableFor();
+//        }
+//
+//    }
 
     private class SmoothActionBarDrawerToggle extends ActionBarDrawerToggle {
 

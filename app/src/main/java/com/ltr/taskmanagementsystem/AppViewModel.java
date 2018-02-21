@@ -13,13 +13,15 @@ import java.util.List;
 public class AppViewModel extends AndroidViewModel {
 
     private AppRepository mRepository;
-    private LiveData<List<Task>> mAllTasks;
+    private LiveData<List<Task>> mAllResponsibleTasks;
+    private LiveData<List<Task>> mAllAccountableTasks;
     private LiveData<List<Task>> mOngoingTasks;
 
     public AppViewModel(Application application) {
         super(application);
         mRepository = new AppRepository(application);
-        mAllTasks = mRepository.getAllTasks();
+        mAllResponsibleTasks = mRepository.getAllResponsibleTasks();
+        mAllAccountableTasks = mRepository.getAllAccountableTasks();
         mOngoingTasks = mRepository.getOngoingTasks();
     }
 
@@ -27,8 +29,12 @@ public class AppViewModel extends AndroidViewModel {
         mRepository.insertTask(task);
     }
 
-    LiveData<List<Task>> getAllTasks() {
-        return mAllTasks;
+    LiveData<List<Task>> getAllResponsibleTasks() {
+        return mAllResponsibleTasks;
+    }
+
+    LiveData<List<Task>> getAllAccountableTasks() {
+        return mAllAccountableTasks;
     }
 
     LiveData<List<Task>> getOngoingTasks() {

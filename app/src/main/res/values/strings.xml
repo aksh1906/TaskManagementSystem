@@ -146,4 +146,14 @@
     <string name="nav_create_task">Create Task</string>
     <string name="nav_view_meetings">View Meetings</string>
     <string name="nav_create_meeting">Create Meeting</string>
+
+    <!-- =========================================================================================== -->
+
+    <!-- ViewAllTasksActivity starts -->
+
+    <string name="text_all_tasks">All tasks</string>
+    <string-array name="array_responsible_accountable">
+        <item>Responsible</item>
+        <item>Accountable</item>
+    </string-array>
 </resources>

@@ -12,14 +12,17 @@ import java.util.List;
 
 public class AppRepository {
     private TaskDao mTaskDao;
-    private LiveData<List<Task>> mAllTasks;
+    private LiveData<List<Task>> mAllResponsibleTasks;
+    private LiveData<List<Task>> mAllAccountableTasks;
     private LiveData<List<Task>> mTaskStatus;
     private MeetingDao mMeetingDao;
+    private final String name = "Akshat"; // placeholder
 
     AppRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         mTaskDao = db.taskDao();
-        mAllTasks = mTaskDao.getAllTasks();
+        mAllResponsibleTasks = mTaskDao.getAllResponsibleTasks(name);
+        mAllAccountableTasks = mTaskDao.getAllAccountableTasks(name);
         mTaskStatus = mTaskDao.getOngoingTasks();
         mMeetingDao = db.meetingDao();
     }
@@ -28,8 +31,12 @@ public class AppRepository {
         new insertAsyncTaskTask(mTaskDao).execute(task);
     }
 
-    LiveData<List<Task>> getAllTasks() {
-        return mAllTasks;
+    LiveData<List<Task>> getAllResponsibleTasks() {
+        return mAllResponsibleTasks;
+    }
+
+    LiveData<List<Task>> getAllAccountableTasks() {
+        return mAllAccountableTasks;
     }
 
     LiveData<List<Task>> getOngoingTasks() {

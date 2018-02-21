@@ -47,7 +47,7 @@ public class CreateTaskActivity extends AppCompatActivity
     public String taskCategory, priority, reminderRequired, taskStatus, percentComplete;
     private AppViewModel mAppViewModel;
 
-    public static final String URL_SAVE_NAME = "http://192.168.2.6:8080/";
+    // public static final String URL_SAVE_NAME = "http://192.168.2.6:8080/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,7 +176,7 @@ public class CreateTaskActivity extends AppCompatActivity
         department = etDepartment.getText().toString();
         teamName = etTeamName.getText().toString();
         remarks = etRemarks.getText().toString();
-        priority = spinnerPriority.getItemAtPosition(0).toString();
+        priority = spinnerPriority.getSelectedItem().toString();
         dateCreated = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
         if(taskDescription.equals("")) {
