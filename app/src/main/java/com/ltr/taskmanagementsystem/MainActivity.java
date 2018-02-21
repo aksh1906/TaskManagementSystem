@@ -190,6 +190,21 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             //
         }
+
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        intent = new Intent(MainActivity.this, ViewSingleTaskActivity.class);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+                        //
+                    }
+                })
+        );
     }
 
     private class SmoothActionBarDrawerToggle extends ActionBarDrawerToggle {
