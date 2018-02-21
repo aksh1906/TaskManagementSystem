@@ -14,6 +14,7 @@ public class AppRepository {
     private TaskDao mTaskDao;
     private LiveData<List<Task>> mAllResponsibleTasks;
     private LiveData<List<Task>> mAllAccountableTasks;
+    private LiveData<List<Task>> mAllCreatedTasks;
     private LiveData<List<Task>> mTaskStatus;
     private MeetingDao mMeetingDao;
     private final String name = "Akshat"; // placeholder
@@ -23,6 +24,7 @@ public class AppRepository {
         mTaskDao = db.taskDao();
         mAllResponsibleTasks = mTaskDao.getAllResponsibleTasks(name);
         mAllAccountableTasks = mTaskDao.getAllAccountableTasks(name);
+        mAllCreatedTasks = mTaskDao.getAllCreatedTasks(name);
         mTaskStatus = mTaskDao.getOngoingTasks();
         mMeetingDao = db.meetingDao();
     }
@@ -37,6 +39,10 @@ public class AppRepository {
 
     LiveData<List<Task>> getAllAccountableTasks() {
         return mAllAccountableTasks;
+    }
+
+    LiveData<List<Task>> getAllCreatedTasks() {
+        return mAllCreatedTasks;
     }
 
     LiveData<List<Task>> getOngoingTasks() {

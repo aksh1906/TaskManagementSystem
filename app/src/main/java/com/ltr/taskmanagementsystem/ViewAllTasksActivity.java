@@ -68,6 +68,8 @@ public class ViewAllTasksActivity extends AppCompatActivity {
                     getTasksResponsibleFor();
                 } else if(selectedItem.equals("Accountable")) {
                     getTasksAccountableFor();
+                } else if(selectedItem.equals("Created")) {
+                    getTasksCreated();
                 }
             }
 
@@ -107,6 +109,25 @@ public class ViewAllTasksActivity extends AppCompatActivity {
         mAppViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
         try {
             mAppViewModel.getAllAccountableTasks().observe(this, new Observer<List<Task>>() {
+                @Override
+                public void onChanged(@Nullable List<Task> tasks) {
+                    adapter.setTasks(tasks);
+                }
+            });
+        } catch (Exception e) {
+            //
+        }
+    }
+
+    public void getTasksCreated() {
+        recyclerView = findViewById(R.id.recyclerview);
+        adapter = new TaskAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mAppViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
+        try {
+            mAppViewModel.getAllCreatedTasks().observe(this, new Observer<List<Task>>() {
                 @Override
                 public void onChanged(@Nullable List<Task> tasks) {
                     adapter.setTasks(tasks);

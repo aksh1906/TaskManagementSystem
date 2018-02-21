@@ -15,6 +15,7 @@ public class AppViewModel extends AndroidViewModel {
     private AppRepository mRepository;
     private LiveData<List<Task>> mAllResponsibleTasks;
     private LiveData<List<Task>> mAllAccountableTasks;
+    private LiveData<List<Task>> mAllCreatedTasks;
     private LiveData<List<Task>> mOngoingTasks;
 
     public AppViewModel(Application application) {
@@ -22,6 +23,7 @@ public class AppViewModel extends AndroidViewModel {
         mRepository = new AppRepository(application);
         mAllResponsibleTasks = mRepository.getAllResponsibleTasks();
         mAllAccountableTasks = mRepository.getAllAccountableTasks();
+        mAllCreatedTasks = mRepository.getAllCreatedTasks();
         mOngoingTasks = mRepository.getOngoingTasks();
     }
 
@@ -35,6 +37,10 @@ public class AppViewModel extends AndroidViewModel {
 
     LiveData<List<Task>> getAllAccountableTasks() {
         return mAllAccountableTasks;
+    }
+
+    LiveData<List<Task>> getAllCreatedTasks() {
+        return mAllCreatedTasks;
     }
 
     LiveData<List<Task>> getOngoingTasks() {

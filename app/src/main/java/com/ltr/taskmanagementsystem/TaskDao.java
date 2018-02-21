@@ -24,6 +24,9 @@ public interface TaskDao {
     @Query("SELECT * FROM task WHERE accountable = :name")
     LiveData<List<Task>> getAllAccountableTasks(String name);
 
+    @Query("SELECT * FROM task WHERE creator = :name")
+    LiveData<List<Task>> getAllCreatedTasks(String name);
+
     @Query("SELECT * FROM task WHERE status='Ongoing'")
     LiveData<List<Task>> getOngoingTasks();
 }
