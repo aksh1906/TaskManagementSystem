@@ -3,6 +3,7 @@ package com.ltr.taskmanagementsystem;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -74,6 +75,9 @@ public class Task {
     @ColumnInfo(name="concerned_project")
     private String mConcerned_project;
 
+    @ColumnInfo(name="team_name")
+    private String mTeam_name;
+
     @ColumnInfo(name="remarks")
     private String mRemarks;
 
@@ -89,7 +93,7 @@ public class Task {
     public Task(String subject, String priority, String date_created,
                 String exp_finish_date, String status, String description,
                 String category, String responsible, String accountable,
-                String concerned_dept, String concerned_project, String remarks,
+                String concerned_dept, String concerned_project, String team_name, String remarks,
                 String actual_finish_date, String creator, String meeting_linked_with,
                 String reminder_required, String percent_complete) {
 
@@ -106,11 +110,15 @@ public class Task {
         this.mPercent_complete = percent_complete;
         this.mConcerned_dept = concerned_dept;
         this.mConcerned_project = concerned_project;
+        this.mTeam_name = team_name;
         this.mRemarks = remarks;
         this.mActual_finish_date = actual_finish_date;
         this.mCreator = creator;
         this.mMeeting_linked_with = meeting_linked_with;
     }
+
+    @Ignore
+    public Task() { }
 
     public String getSubject() { return mSubject; }
 
@@ -137,6 +145,10 @@ public class Task {
     public String getConcerned_dept() { return mConcerned_dept; }
 
     public String getConcerned_project() { return mConcerned_project; }
+
+    public String getTeam_name() {
+        return mTeam_name;
+    }
 
     public String getRemarks() { return mRemarks; }
 

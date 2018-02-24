@@ -33,6 +33,10 @@ public class AppRepository {
         new insertAsyncTaskTask(mTaskDao).execute(task);
     }
 
+    public void updateTask(Task task) {
+        new updateAsyncTask(mTaskDao).execute(task);
+    }
+
     LiveData<List<Task>> getAllResponsibleTasks() {
         return mAllResponsibleTasks;
     }
@@ -63,6 +67,20 @@ public class AppRepository {
         @Override
         protected Void doInBackground(final Task... params) {
             mAsyncTaskTaskDao.insertTask(params[0]);
+            return null;
+        }
+    }
+
+    private static class updateAsyncTask extends AsyncTask<Task, Void, Void> {
+        private TaskDao mAsyncTaskUpdateDao;
+
+        updateAsyncTask(TaskDao dao) {
+            mAsyncTaskUpdateDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Task... params) {
+            mAsyncTaskUpdateDao.updateTask(params[0]);
             return null;
         }
     }

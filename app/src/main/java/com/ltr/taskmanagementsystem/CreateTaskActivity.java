@@ -2,12 +2,10 @@ package com.ltr.taskmanagementsystem;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,25 +20,24 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
+import android.support.v7.widget.Toolbar;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.Locale;
 
 public class CreateTaskActivity extends AppCompatActivity
         implements DatePickerDialog.OnDateSetListener  {
 
     public EditText etTaskSubject, etTaskDescription, etResponsible, etAccountable;
-    public TextView tvDatePicker;
+    public TextView tvDatePicker, tvToolbarTitle;
     public EditText etProject, etDepartment, etTeamName, etRemarks;
     public Spinner spinnerTaskCategory, spinnerPriority;
     public Button btnCancel, btnSubmit;
+    private Toolbar mToolbar;
     public String taskSubject, taskDescription, responsible, accountable;
     public String dateCreated, dateExpected, dateActual, meetingLinkedWith;
     public String project, department, teamName, remarks, creator;
@@ -127,6 +124,7 @@ public class CreateTaskActivity extends AppCompatActivity
 //        spinnerPercentCompleteAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //        spinnerPercentComplete.setAdapter(spinnerPercentCompleteAdapter);
 
+        createToolbar();
 
         // check if all required fields are empty
         // used here to disable the button on activity creation
@@ -135,6 +133,17 @@ public class CreateTaskActivity extends AppCompatActivity
 
         // get a new or existing ViewModel from the ViewModelProvider
         mAppViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
+    }
+
+    private void createToolbar() {
+        mToolbar = findViewById(R.id.tbCreateNewTask);
+        if(mToolbar != null) {
+            setSupportActionBar(mToolbar);
+            getSupportActionBar().setTitle(null); // remove the default title for the toolbar
+            tvToolbarTitle = findViewById(R.id.toolbar_title);
+            tvToolbarTitle.setText("Create New Activity");
+        }
+
     }
 
     public void showDatePickerDialog(View view) {
@@ -194,7 +203,7 @@ public class CreateTaskActivity extends AppCompatActivity
         taskCategory = "cat1"; // placeholder
 
         Task task = new Task(taskSubject, priority, dateCreated, dateExpected, taskStatus, taskDescription,
-                taskCategory, responsible, accountable, department, project, remarks, dateActual, creator,
+                taskCategory, responsible, accountable, department, project, teamName, remarks, dateActual, creator,
                 meetingLinkedWith, reminderRequired, percentComplete);
         mAppViewModel.insertTask(task);
 

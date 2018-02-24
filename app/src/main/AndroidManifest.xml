@@ -35,7 +35,7 @@
             android:exported="true"
             android:theme="@style/NoActionBar" />
         <activity android:name=".ViewAllTasksActivity" />
-        <activity android:name=".ViewSingleTaskActivity"></activity>
+        <activity android:name=".ViewSingleTaskActivity" />
     </application>
 
 </manifest>

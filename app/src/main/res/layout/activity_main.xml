@@ -59,7 +59,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:background="@color/colorPrimary"
-            android:src="@drawable/ic_add_black_24dp"
+            android:src="@drawable/ic_add"
             />
 
     </android.support.design.widget.CoordinatorLayout>

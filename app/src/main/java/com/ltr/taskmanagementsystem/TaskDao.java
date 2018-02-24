@@ -5,6 +5,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import java.util.List;
 
@@ -18,6 +19,9 @@ public interface TaskDao {
     @Insert
     void insertTask(Task task);
 
+    @Query("SELECT * FROM task WHERE subject = :subject")
+    LiveData<Task> getSingleTaskData(String subject);
+
     @Query("SELECT * FROM task WHERE responsible = :name")
     LiveData<List<Task>> getAllResponsibleTasks(String name);
 
@@ -29,4 +33,7 @@ public interface TaskDao {
 
     @Query("SELECT * FROM task WHERE status='Ongoing'")
     LiveData<List<Task>> getOngoingTasks();
+
+    @Update
+    void updateTask(Task task);
 }

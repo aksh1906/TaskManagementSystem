@@ -29,13 +29,14 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private SmoothActionBarDrawerToggle mDrawerToggle;
     private Toolbar toolbar;
-    private TextView toolbarTitle;
+    private TextView toolbarTitle, tvTaskTitle;
     private FloatingActionButton fab;
     private RecyclerView recyclerView;
     private AppViewModel mAppViewModel;
     private LiveData<List<Task>> ongoingTasks;
     Intent intent;
     private static final int CREATE_TASK_ACTIVITY_REQUEST_CODE = 1;
+    public static final String MESSAGE = "com.ltr.taskmanagementsystem.SUBJECT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
     // setup the toolbar
     private void createToolbar() {
         toolbar = findViewById(R.id.tb_main_activity);
+        if(toolbar != null) {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setTitle(null); // remove the default title for the toolbar
+            toolbarTitle = findViewById(R.id.toolbar_title);
+            toolbarTitle.setText("Home");
+        }
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null); // remove the default title for the toolbar
         toolbarTitle = findViewById(R.id.toolbar_title);
@@ -173,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
     // setup the recyclerview used to show the cards
     // containing brief info about the user's currently ongoing tasks
-    private void createRecyclerView() {
+    public void createRecyclerView() {
         recyclerView = findViewById(R.id.recyclerview);
         final TaskAdapter adapter = new TaskAdapter(this);
         recyclerView.setAdapter(adapter);
@@ -195,7 +202,10 @@ public class MainActivity extends AppCompatActivity {
                 new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
+//                        tvTaskTitle = findViewById(R.id.tvTaskName);
+                        String subject = ((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tvTaskName)).getText().toString();
                         intent = new Intent(MainActivity.this, ViewSingleTaskActivity.class);
+                        intent.putExtra(MESSAGE, subject);
                         startActivity(intent);
                     }
 

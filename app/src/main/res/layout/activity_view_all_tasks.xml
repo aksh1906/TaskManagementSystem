@@ -30,18 +30,10 @@
                 android:layout_height="match_parent"
                 android:baselineAligned="false"
                 android:orientation="vertical"
-                android:paddingBottom="24dp"
+                android:paddingBottom="0dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:paddingTop="16dp">
-
-                <TextView
-                    android:id="@+id/tvCurrentTasks"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_all_tasks"
-                    android:textSize="22sp"
-                    />
+                android:paddingTop="0dp">
 
                 <Spinner
                     android:id="@+id/spinner_responsible_accountable"
@@ -66,7 +58,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:background="@color/colorPrimary"
-            android:src="@drawable/ic_add_black_24dp"
+            android:src="@drawable/ic_add"
             />
 
     </android.support.design.widget.CoordinatorLayout>

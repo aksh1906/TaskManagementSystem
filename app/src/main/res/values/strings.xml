@@ -157,4 +157,27 @@
         <item>Accountable</item>
         <item>Created</item>
     </string-array>
+
+    <!-- ViewAllTasksActivity ends -->
+
+    <!-- =========================================================================================== -->
+
+    <!-- ViewSingleTaskActivity starts -->
+
+    <string name="text_task_subject_view">Subject:</string>
+    <string name="text_task_type_view">Type:</string>
+    <string name="text_task_description_view">Description:</string>
+    <string name="text_task_date_created_view">Date Created:</string>
+    <string name="text_task_planned_finish_date_view">Planned Finish Date:</string>
+    <string name="text_task_actual_finish_date_view">Actual Finish Date:</string>
+    <string name="text_task_creator_view">Creator:</string>
+    <string name="text_task_responsible_view">Responsible:</string>
+    <string name="text_task_accountable_view">Accountable:</string>
+    <string name="text_task_project_view">Concerned Project:</string>
+    <string name="text_task_department_view">Concerned Department:</string>
+    <string name="text_task_team_name_view">Team Name:</string>
+    <string name="text_task_remarks_view">Remarks:</string>
+    <string name="text_task_status_view">Status:</string>
+    <string name="text_task_percent_complete_view">% complete:</string>
+    <string name="title_activity_edit_task">EditTaskActivity</string>
 </resources>

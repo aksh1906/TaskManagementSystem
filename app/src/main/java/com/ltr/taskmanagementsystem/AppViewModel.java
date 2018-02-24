@@ -3,6 +3,8 @@ package com.ltr.taskmanagementsystem;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MediatorLiveData;
+import android.arch.lifecycle.Transformations;
 
 import java.util.List;
 
@@ -12,7 +14,7 @@ import java.util.List;
 
 public class AppViewModel extends AndroidViewModel {
 
-    private AppRepository mRepository;
+    public AppRepository mRepository;
     private LiveData<List<Task>> mAllResponsibleTasks;
     private LiveData<List<Task>> mAllAccountableTasks;
     private LiveData<List<Task>> mAllCreatedTasks;
@@ -29,6 +31,10 @@ public class AppViewModel extends AndroidViewModel {
 
     public void insertTask(Task task) {
         mRepository.insertTask(task);
+    }
+
+    public void updateTask(Task task) {
+        mRepository.updateTask(task);
     }
 
     LiveData<List<Task>> getAllResponsibleTasks() {

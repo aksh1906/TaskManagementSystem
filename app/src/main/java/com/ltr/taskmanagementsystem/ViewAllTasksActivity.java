@@ -141,6 +141,12 @@ public class ViewAllTasksActivity extends AppCompatActivity {
     // create the toolbar
     private void createToolbar() {
         mToolbar = findViewById(R.id.tb_main_activity);
+        if(mToolbar != null) {
+            setSupportActionBar(mToolbar);
+            getSupportActionBar().setTitle(null); // remove the default title for the toolbar
+            toolbarTitle = findViewById(R.id.toolbar_title);
+            toolbarTitle.setText("View All Tasks");
+        }
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(null); // remove the default title for the toolbar
         toolbarTitle = findViewById(R.id.toolbar_title);
@@ -260,22 +266,6 @@ public class ViewAllTasksActivity extends AppCompatActivity {
         });
     }
 
-    // setup the recyclerview used to show the cards
-    // containing brief info about the user's currently ongoing tasks
-//    private void createRecyclerView() {
-//        recyclerView = findViewById(R.id.recyclerview);
-//        adapter = new TaskAdapter(this);
-//        recyclerView.setAdapter(adapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//
-//        mAppViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
-//        if(spinnerRole.getSelectedItem() == "Responsible") {
-//            getTasksResponsibleFor();
-//        } else if(spinnerRole.getSelectedItem() == "Accountable") {
-//            getTasksAccountableFor();
-//        }
-//
-//    }
 
     private class SmoothActionBarDrawerToggle extends ActionBarDrawerToggle {
 
