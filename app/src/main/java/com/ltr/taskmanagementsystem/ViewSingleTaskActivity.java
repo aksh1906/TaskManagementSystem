@@ -21,12 +21,15 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -41,16 +44,18 @@ public class ViewSingleTaskActivity extends AppCompatActivity
     private FloatingActionButton fab;
     private TextView tvSubject, tvType, tvDescription, tvDateCreated, tvPriority;
     private TextView tvPlannedFinishDate, tvStatus, tvPercentComplete, etPlannedFinishDate;
-    private TextView tvCreator, tvResponsible, tvAccountable, tvProject;
+    private TextView tvCreator, tvResponsible, tvAccountable, tvProject, tvTaskId;
     private TextView tvDepartment, tvTeamName, tvRemarks, tvActualFinishDate;
     private EditText etRemarks;
     private Spinner spinnerStatus, spinnerPercentComplete;
-    private LinearLayout llActualFinishDate, llButtons;
+    private LinearLayout llActualFinishDate;
+    private RelativeLayout rlButtons;
     private Button btnSubmit, btnCancel;
     private String subject, type, description, dateCreated, plannedFinishDate;
-    private String creator, responsible, accountable, project, department;
+    private String priority, creator, responsible, accountable, project, department;
     private String teamName, remarks, status, percentComplete, actualFinishDate;
-    private String intentSubject;
+    private String meetingLinkedWith, reminderRequired;
+    private int intentTaskId;
     private AppViewModel mAppViewModel;
     private AppDatabase mDatabase;
     private final int EDIT_TASK_ACTIVITY_REQUEST_CODE = 1;
@@ -114,21 +119,17 @@ public class ViewSingleTaskActivity extends AppCompatActivity
         tvProject = findViewById(R.id.tvTaskProjectData);
         tvDepartment = findViewById(R.id.tvTaskDepartmentData);
         tvTeamName = findViewById(R.id.tvTaskTeamNameData);
+        tvTaskId = findViewById(R.id.taskid);
         tvRemarks = findViewById(R.id.tvTaskRemarksData);
         llActualFinishDate = findViewById(R.id.llActualFinishDate);
-
-//        if(actualFinishDate != null) {
-//            llActualFinishDate.setVisibility(View.VISIBLE);
-//        }
 
         // MAKESHIFT SOLUTION FOR NOW. WILL BE CHANGED LATER TO USE THE VIEWMODEL
         // INSTEAD OF USING THE DAO DIRECTLY
 
-//        mAppViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
         intent = getIntent();
-        intentSubject = intent.getStringExtra(MainActivity.MESSAGE);
+        intentTaskId = intent.getIntExtra("task id", 0);
         mDatabase = AppDatabase.getDatabase(getApplicationContext());
-        mDatabase.taskDao().getSingleTaskData(intentSubject).observe(this, new Observer<Task>() {
+        mDatabase.taskDao().getSingleTaskData(intentTaskId).observe(this, new Observer<Task>() {
             @Override
             public void onChanged(@Nullable Task task) {
                 tvSubject.setText(task.getSubject());
@@ -150,18 +151,9 @@ public class ViewSingleTaskActivity extends AppCompatActivity
                 tvDepartment.setText(task.getConcerned_dept());
                 tvTeamName.setText(task.getTeam_name());
                 tvRemarks.setText(task.getRemarks());
+                tvTaskId.setText(Integer.toString(task.getTaskId()));
             }
         });
-//        mAppViewModel.mRepository.subject = "test";
-//        mAppViewModel.setSubject();
-//        mAppViewModel.getSingleTask().observe(this, new Observer<Task>() {
-//            @Override
-//            public void onChanged(@Nullable Task task) {
-//
-//
-//
-//            }
-//        });
     }
 
     public void goIntoEditMode() {
@@ -170,8 +162,8 @@ public class ViewSingleTaskActivity extends AppCompatActivity
 
         fab.setVisibility(View.GONE);
 
-        llButtons = findViewById(R.id.llButtons);
-        llButtons.setVisibility(View.VISIBLE);
+        rlButtons = findViewById(R.id.rlButtons);
+        rlButtons.setVisibility(View.VISIBLE);
 
         tvRemarks = findViewById(R.id.tvTaskRemarksData);
         remarksText = tvRemarks.getText().toString();
@@ -189,13 +181,31 @@ public class ViewSingleTaskActivity extends AppCompatActivity
 
         tvStatus = findViewById(R.id.tvTaskStatusData);
         tvStatus.setVisibility(View.GONE);
+        statusText = tvStatus.getText().toString();
         spinnerStatus = findViewById(R.id.spinnerStatus);
         spinnerStatus.setVisibility(View.VISIBLE);
+        ArrayAdapter<CharSequence> statusAdapter = ArrayAdapter.createFromResource(this, R.array.array_task_status, R.layout.spinner);
+        statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerStatus.setAdapter(statusAdapter);
+
+        // set the spinner position to the current status
+        if(statusText != null) {
+            int spinnerPosition = statusAdapter.getPosition(statusText);
+            spinnerStatus.setSelection(spinnerPosition);
+        }
 
         tvPercentComplete = findViewById(R.id.tvTaskPercentCompleteData);
         tvPercentComplete.setVisibility(View.GONE);
+        percentCompleteText = tvPercentComplete.getText().toString();
         spinnerPercentComplete = findViewById(R.id.spinnerPercentComplete);
         spinnerPercentComplete.setVisibility(View.VISIBLE);
+        ArrayAdapter<CharSequence> percentCompleteAdapter = ArrayAdapter.createFromResource(this, R.array.array_percent_complete, R.layout.spinner);
+        percentCompleteAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPercentComplete.setAdapter(percentCompleteAdapter);
+        if(percentCompleteText != null) {
+            int spinnerPosition = percentCompleteAdapter.getPosition(percentCompleteText);
+            spinnerPercentComplete.setSelection(spinnerPosition);
+        }
 
         activateButtons();
     }
@@ -237,25 +247,101 @@ public class ViewSingleTaskActivity extends AppCompatActivity
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                saveTask();
+                saveChanges();
             }
         });
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                cancelTask();
+                cancelChanges();
             }
         });
         btnSubmit.setBackgroundResource(R.drawable.button_rounded_corners_enabled);
         btnSubmit.setEnabled(true);
     }
 
-    public void saveTask() {
+    public void saveChanges() {
+        tvSubject = findViewById(R.id.tvTaskSubjectData);
+        tvType = findViewById(R.id.tvTaskCategoryData);
+        tvDescription = findViewById(R.id.tvTaskDescriptionData);
+        tvPriority = findViewById(R.id.tvTaskPriorityData);
+        etPlannedFinishDate = findViewById(R.id.tvDatePicker);
+        tvDateCreated = findViewById(R.id.tvTaskDateCreatedData);
+        tvActualFinishDate = findViewById(R.id.tvTaskActualFinishDateData);
+        spinnerStatus = findViewById(R.id.spinnerStatus);
+        spinnerPercentComplete = findViewById(R.id.spinnerPercentComplete);
+        tvCreator = findViewById(R.id.tvTaskCreatorData);
+        tvResponsible = findViewById(R.id.tvTaskResponsibleData);
+        tvAccountable = findViewById(R.id.tvTaskAccountableData);
+        tvProject = findViewById(R.id.tvTaskProjectData);
+        tvDepartment = findViewById(R.id.tvTaskDepartmentData);
+        tvTeamName = findViewById(R.id.tvTaskTeamNameData);
+        etRemarks = findViewById(R.id.etTaskRemarksData);
+        tvTaskId = findViewById(R.id.taskid);
+
+        int id = Integer.parseInt(tvTaskId.getText().toString());
+        subject = tvSubject.getText().toString();
+        type = tvType.getText().toString();
+        description = tvDescription.getText().toString();
+        priority = tvPriority.getText().toString();
+        plannedFinishDate = etPlannedFinishDate.getText().toString();
+        dateCreated = tvDateCreated.getText().toString();
+        actualFinishDate = tvActualFinishDate.getText().toString();
+        status = spinnerStatus.getSelectedItem().toString();
+        percentComplete = spinnerPercentComplete.getSelectedItem().toString();
+        creator = tvCreator.getText().toString();
+        responsible = tvResponsible.getText().toString();
+        project = tvProject.getText().toString();
+        department = tvDepartment.getText().toString();
+        teamName = tvTeamName.getText().toString();
+        remarks = etRemarks.getText().toString();
+
+        Task task = new Task(id, subject, priority, dateCreated, plannedFinishDate, status, description,
+                type, responsible, accountable, department, project, teamName, remarks, actualFinishDate,
+                creator, meetingLinkedWith, reminderRequired, percentComplete);
+
+
+        // WORKAROUND AGAIN. WILL BE FIXED ONCE I FIGURE OUT WHAT THE PROBLEM IS
+        AppDatabase db = AppDatabase.getDatabase(getApplicationContext());
+        db.taskDao().updateTask(task);
+        goIntoViewMode();
+        Toast toast = Toast.makeText(getApplicationContext(), "Changes saved.", Toast.LENGTH_LONG);
+        toast.show();
 
     }
 
-    public void cancelTask() {
-        //
+    public void cancelChanges() {
+        goIntoViewMode();
+    }
+
+    public void goIntoViewMode() {
+
+        fab.setVisibility(View.GONE);
+
+        rlButtons = findViewById(R.id.rlButtons);
+        rlButtons.setVisibility(View.GONE);
+
+        tvRemarks = findViewById(R.id.tvTaskRemarksData);
+        tvRemarks.setVisibility(View.VISIBLE);
+        etRemarks = findViewById(R.id.etTaskRemarksData);
+        etRemarks.setVisibility(View.GONE);
+
+        tvPlannedFinishDate = findViewById(R.id.tvTaskPlannedFinishDateData);
+        tvPlannedFinishDate.setVisibility(View.VISIBLE);
+        etPlannedFinishDate = findViewById(R.id.tvDatePicker);
+        etPlannedFinishDate.setVisibility(View.GONE);
+
+        tvStatus = findViewById(R.id.tvTaskStatusData);
+        tvStatus.setVisibility(View.VISIBLE);
+        spinnerStatus = findViewById(R.id.spinnerStatus);
+        spinnerStatus.setVisibility(View.GONE);
+
+        tvPercentComplete = findViewById(R.id.tvTaskPercentCompleteData);
+        tvPercentComplete.setVisibility(View.VISIBLE);
+        spinnerPercentComplete = findViewById(R.id.spinnerPercentComplete);
+        spinnerPercentComplete.setVisibility(View.GONE);
+
+        fab.setVisibility(View.VISIBLE);
     }
 
     @Override

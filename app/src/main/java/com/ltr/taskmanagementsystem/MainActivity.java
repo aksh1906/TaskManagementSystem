@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     private LiveData<List<Task>> ongoingTasks;
     Intent intent;
     private static final int CREATE_TASK_ACTIVITY_REQUEST_CODE = 1;
-    public static final String MESSAGE = "com.ltr.taskmanagementsystem.SUBJECT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -202,10 +201,9 @@ public class MainActivity extends AppCompatActivity {
                 new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-//                        tvTaskTitle = findViewById(R.id.tvTaskName);
-                        String subject = ((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tvTaskName)).getText().toString();
+                        int task_id = Integer.parseInt(((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tvTaskId)).getText().toString());
                         intent = new Intent(MainActivity.this, ViewSingleTaskActivity.class);
-                        intent.putExtra(MESSAGE, subject);
+                        intent.putExtra("task id", task_id);
                         startActivity(intent);
                     }
 

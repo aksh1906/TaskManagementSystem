@@ -1,11 +1,14 @@
 package com.ltr.taskmanagementsystem;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +24,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -32,16 +36,16 @@ import java.util.Locale;
 public class CreateTaskActivity extends AppCompatActivity
         implements DatePickerDialog.OnDateSetListener  {
 
-    public EditText etTaskSubject, etTaskDescription, etResponsible, etAccountable;
-    public TextView tvDatePicker, tvToolbarTitle;
-    public EditText etProject, etDepartment, etTeamName, etRemarks;
-    public Spinner spinnerTaskCategory, spinnerPriority;
-    public Button btnCancel, btnSubmit;
+    private EditText etTaskSubject, etTaskDescription, etResponsible, etAccountable;
+    private TextView tvDatePicker, tvToolbarTitle;
+    private EditText etProject, etDepartment, etTeamName, etRemarks;
+    private Spinner spinnerTaskCategory, spinnerPriority;
+    private Button btnCancel, btnSubmit;
     private Toolbar mToolbar;
-    public String taskSubject, taskDescription, responsible, accountable;
-    public String dateCreated, dateExpected, dateActual, meetingLinkedWith;
-    public String project, department, teamName, remarks, creator;
-    public String taskCategory, priority, reminderRequired, taskStatus, percentComplete;
+    private String taskSubject, taskDescription, responsible, accountable;
+    private String dateCreated, dateExpected, dateActual, meetingLinkedWith;
+    private String project, department, teamName, remarks, creator;
+    private String taskCategory, priority, reminderRequired, taskStatus, percentComplete;
     private AppViewModel mAppViewModel;
 
     // public static final String URL_SAVE_NAME = "http://192.168.2.6:8080/";
@@ -101,28 +105,6 @@ public class CreateTaskActivity extends AppCompatActivity
                 this, R.array.array_priority, R.layout.spinner);
         spinnerPriorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPriority.setAdapter(spinnerPriorityAdapter);
-
-
-
-//        IGNORE FOR NOW
-
-//        spinnerReminderRequired = findViewById(R.id.spinnerReminderRequired);
-//        ArrayAdapter<CharSequence> spinnerReminderRequiredAdapter = ArrayAdapter.createFromResource(
-//                this, R.array.array_reminder_required, R.layout.spinner);
-//        spinnerReminderRequiredAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinnerReminderRequired.setAdapter(spinnerReminderRequiredAdapter);
-
-//        spinnerTaskStatus = findViewById(R.id.spinnerTaskStatus);
-//        ArrayAdapter<CharSequence> spinnerTaskStatusAdapter = ArrayAdapter.createFromResource(
-//                this, R.array.array_task_status, R.layout.spinner);
-//        spinnerTaskStatusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinnerTaskStatus.setAdapter(spinnerTaskStatusAdapter);
-
-//        spinnerPercentComplete = findViewById(R.id.spinnerPercentComplete);
-//        ArrayAdapter<CharSequence> spinnerPercentCompleteAdapter = ArrayAdapter.createFromResource(
-//                this, R.array.array_percent_complete, R.layout.spinner);
-//        spinnerPercentCompleteAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinnerPercentComplete.setAdapter(spinnerPercentCompleteAdapter);
 
         createToolbar();
 
@@ -210,11 +192,33 @@ public class CreateTaskActivity extends AppCompatActivity
         Intent intent = new Intent(CreateTaskActivity.this, MainActivity.class);
         startActivity(intent);
         CreateTaskActivity.this.finish();
+        Toast toast = Toast.makeText(getApplicationContext(), "Task Created", Toast.LENGTH_LONG);
+        toast.show();
     }
 
     public void cancelTask() {
-        //
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+
+        builder.setTitle("Cancel")
+                .setMessage("Are you sure you want to cancel Task Creation?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        CreateTaskActivity.this.finish();
+                        Toast toast = Toast.makeText(getApplicationContext(), "Task not created", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
+
 
 
     // TextWatchers for all fields

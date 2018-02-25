@@ -19,8 +19,8 @@ public interface TaskDao {
     @Insert
     void insertTask(Task task);
 
-    @Query("SELECT * FROM task WHERE subject = :subject")
-    LiveData<Task> getSingleTaskData(String subject);
+    @Query("SELECT * FROM task WHERE task_id = :task_id")
+    LiveData<Task> getSingleTaskData(int task_id);
 
     @Query("SELECT * FROM task WHERE responsible = :name")
     LiveData<List<Task>> getAllResponsibleTasks(String name);
@@ -34,6 +34,6 @@ public interface TaskDao {
     @Query("SELECT * FROM task WHERE status='Ongoing'")
     LiveData<List<Task>> getOngoingTasks();
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateTask(Task task);
 }

@@ -118,7 +118,38 @@ public class Task {
     }
 
     @Ignore
-    public Task() { }
+    public Task(int task_id, String subject, String priority, String date_created,
+                String exp_finish_date, String status, String description,
+                String category, String responsible, String accountable,
+                String concerned_dept, String concerned_project, String team_name, String remarks,
+                String actual_finish_date, String creator, String meeting_linked_with,
+                String reminder_required, String percent_complete) {
+
+        this.mTask_id = task_id;
+        this.mSubject = subject;
+        this.mPriority = priority;
+        this.mDate_created = date_created;
+        this.mExp_finish_date = exp_finish_date;
+        this.mStatus = status;
+        this.mDescription = description;
+        this.mReminder_required = reminder_required;
+        this.mCategory = category;
+        this.mResponsible = responsible;
+        this.mAccountable = accountable;
+        this.mPercent_complete = percent_complete;
+        this.mConcerned_dept = concerned_dept;
+        this.mConcerned_project = concerned_project;
+        this.mTeam_name = team_name;
+        this.mRemarks = remarks;
+        this.mActual_finish_date = actual_finish_date;
+        this.mCreator = creator;
+        this.mMeeting_linked_with = meeting_linked_with;
+
+    }
+
+    public int getTaskId() {
+        return mTask_id;
+    }
 
     public String getSubject() { return mSubject; }
 

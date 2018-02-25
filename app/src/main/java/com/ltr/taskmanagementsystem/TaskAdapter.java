@@ -16,13 +16,14 @@ import java.util.List;
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
     class TaskViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvTaskName, tvPriority, tvExpFinishDate;
+        private TextView tvTaskName, tvPriority, tvExpFinishDate, tvTaskId;
 
         private TaskViewHolder(View view) {
             super(view);
             tvTaskName = view.findViewById(R.id.tvTaskName);
             tvPriority = view.findViewById(R.id.tvPriority);
             tvExpFinishDate = view.findViewById(R.id.tvExpFinishDate);
+            tvTaskId = view.findViewById(R.id.tvTaskId);
         }
     }
 
@@ -46,6 +47,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             holder.tvTaskName.setText(current.getSubject());
             holder.tvPriority.setText(current.getPriority());
             holder.tvExpFinishDate.setText(current.getExp_finish_date());
+            holder.tvTaskId.setText(Integer.toString(current.getTaskId()));
         }
     }
 

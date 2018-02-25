@@ -78,6 +78,12 @@
                 card_view:layout_constraintBaseline_toBaselineOf="@+id/tvExpFinishDateLabel"
                 card_view:layout_constraintStart_toEndOf="@+id/tvExpFinishDateLabel" />
 
+            <TextView
+                android:id="@+id/tvTaskId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible" />
+
 
         </android.support.constraint.ConstraintLayout>
         

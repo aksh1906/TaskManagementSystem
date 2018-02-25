@@ -56,9 +56,9 @@
     <string name="edit_responsible">Person Responsible</string>
     <string name="text_accountable">Accountable:</string>
     <string name="edit_accountable">Person Accountable</string>
-    <string name="text_project">Concerned Project:</string>
+    <string name="text_project">Project:</string>
     <string name="edit_project">Project Name</string>
-    <string name="text_department">Concerned Department:</string>
+    <string name="text_department">Department:</string>
     <string name="edit_department">Department Name</string>
     <string name="text_team_name">Team Name:</string>
     <string name="edit_team_name">Name</string>
