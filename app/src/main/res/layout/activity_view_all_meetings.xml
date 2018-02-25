@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/NoActionBar"
+    android:background="@color/colorBackground"
+    tools:context=".MainActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
+
+            <include
+                android:id="@+id/tb_view_all_meetings"
+                layout="@layout/app_toolbar" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:orientation="vertical"
+                android:paddingBottom="0dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="0dp">
+
+                <Spinner
+                    android:id="@+id/spinner_attendee_creator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="16dp"/>
+
+            </LinearLayout>
+
+            <include layout="@layout/recyclerview_meeting" />
+
+        </LinearLayout>
+
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/colorPrimary"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/ic_add"
+            />
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:itemBackground="?android:attr/selectableItemBackground"
+        app:itemTextColor="@color/colorText"
+        app:headerLayout="@layout/navigation_header"
+        app:menu="@menu/navigation_items"/>
+
+</android.support.v4.widget.DrawerLayout>
+
+
+
+

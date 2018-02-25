@@ -6,10 +6,6 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home_black_24dp"
             android:title="@string/nav_home" />
-        <!--<item-->
-            <!--android:id="@+id/nav_tasks"-->
-            <!--android:title="@string/nav_tasks" >-->
-            <!--<menu>-->
                 <item
                     android:id="@+id/nav_view_tasks"
                     android:icon="@drawable/ic_eye_24dp"
@@ -18,12 +14,6 @@
                     android:id="@+id/nav_create_task"
                     android:icon="@drawable/ic_add_24dp"
                     android:title="@string/nav_create_task" />
-            <!--</menu>-->
-        <!--</item>-->
-        <!--<item-->
-            <!--android:id="@+id/nav_meetings"-->
-            <!--android:title="@string/nav_tasks" >-->
-            <!--<menu>-->
                 <item
                     android:id="@+id/nav_view_meetings"
                     android:icon="@drawable/ic_eye_24dp"
@@ -32,8 +22,6 @@
                     android:id="@+id/nav_create_meeting"
                     android:icon="@drawable/ic_add_24dp"
                     android:title="@string/nav_create_meeting" />
-            <!--</menu>-->
-        <!--</item>-->
 
     </group>
 

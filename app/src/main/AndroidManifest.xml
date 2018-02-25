@@ -36,6 +36,8 @@
             android:theme="@style/NoActionBar" />
         <activity android:name=".ViewAllTasksActivity" />
         <activity android:name=".ViewSingleTaskActivity" />
+        <activity android:name=".ViewAllMeetingsActivity" />
+        <activity android:name=".ViewSingleMeetingActivity"></activity>
     </application>
 
 </manifest>

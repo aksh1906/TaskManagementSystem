@@ -151,7 +151,14 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.nav_view_meetings:
-                // ViewMeetingActivity
+                mDrawerToggle.runWhenIdle(new Runnable() {
+                    @Override
+                    public void run() {
+                        intent = new Intent(MainActivity.this, ViewAllMeetingsActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                mDrawerLayout.closeDrawers();
                 break;
 
             case R.id.nav_create_meeting:
@@ -162,6 +169,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+                mDrawerLayout.closeDrawers();
+                break;
         }
     }
 

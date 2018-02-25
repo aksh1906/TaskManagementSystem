@@ -110,7 +110,7 @@
         <item>Yearly</item>
     </string-array>
     <string name="text_meeting_date">Date:</string>
-    <string name="edit_meeting_date">DD/MM/YYYY</string>
+    <string name="edit_meeting_date">(DD/MM/YYYY)</string>
     <string name="text_meeting_time">Time:</string>
     <string name="edit_meeting_time">hh:mm</string>
     <string name="text_meeting_venue">Venue:</string>
@@ -180,4 +180,10 @@
     <string name="text_task_status_view">Status:</string>
     <string name="text_task_percent_complete_view">% complete:</string>
     <string name="title_activity_edit_task">EditTaskActivity</string>
+    <string name="title_activity_view_all_meetings">ViewAllMeetingsActivity</string>
+
+    <string-array name="array_creator_attendee">
+        <item>Attended</item>
+        <item>Created</item>
+    </string-array>
 </resources>

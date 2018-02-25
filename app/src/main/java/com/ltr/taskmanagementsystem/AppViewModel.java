@@ -19,6 +19,7 @@ public class AppViewModel extends AndroidViewModel {
     private LiveData<List<Task>> mAllAccountableTasks;
     private LiveData<List<Task>> mAllCreatedTasks;
     private LiveData<List<Task>> mOngoingTasks;
+    private LiveData<List<Meeting>> mAllCreatedMeetings;
 
     public AppViewModel(Application application) {
         super(application);
@@ -27,6 +28,7 @@ public class AppViewModel extends AndroidViewModel {
         mAllAccountableTasks = mRepository.getAllAccountableTasks();
         mAllCreatedTasks = mRepository.getAllCreatedTasks();
         mOngoingTasks = mRepository.getOngoingTasks();
+        mAllCreatedMeetings = mRepository.getAllCreatedMeetings();
     }
 
     public void insertTask(Task task) {
@@ -55,5 +57,9 @@ public class AppViewModel extends AndroidViewModel {
 
     public void insertMeeting(Meeting meeting) {
         mRepository.insertMeeting(meeting);
+    }
+
+    LiveData<List<Meeting>> getAllCreatedMeetings() {
+        return mAllCreatedMeetings;
     }
 }

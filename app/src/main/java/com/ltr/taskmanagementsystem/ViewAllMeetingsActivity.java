@@ -19,41 +19,41 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.AdapterView;
 
 import java.util.List;
 
-public class ViewAllTasksActivity extends AppCompatActivity {
+public class ViewAllMeetingsActivity extends AppCompatActivity {
 
     private Spinner spinnerRole;
-    private NavigationView mNavigationView;
-    private DrawerLayout mDrawerLayout;
-    private SmoothActionBarDrawerToggle mDrawerToggle;
+    private RecyclerView recyclerView;
+    private MeetingAdapter adapter;
+    private AppViewModel mAppViewModel;
+    private Intent intent;
     private Toolbar mToolbar;
     private TextView toolbarTitle;
+    private DrawerLayout mDrawerLayout;
+    private NavigationView mNavigationView;
+    private SmoothActionBarDrawerToggle mDrawerToggle;
     private FloatingActionButton fab;
-    private RecyclerView recyclerView;
-    private AppViewModel mAppViewModel;
-    Intent intent;
-    TaskAdapter adapter;
     private static final int CREATE_TASK_ACTIVITY_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_all_tasks);
+        setContentView(R.layout.activity_view_all_meetings);
 
-        spinnerRole = findViewById(R.id.spinner_responsible_accountable);
+        spinnerRole = findViewById(R.id.spinner_attendee_creator);
         ArrayAdapter<CharSequence> spinnerRoleAdapter = ArrayAdapter.createFromResource(
-                this, R.array.array_responsible_accountable, R.layout.spinner);
+                this, R.array.array_creator_attendee, R.layout.spinner);
         spinnerRoleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerRole.setAdapter(spinnerRoleAdapter);
 
-        createFAB();
         createToolbar();
+        createFAB();
         createNavigationDrawer();
         setupDrawerListener();
         spinnerSelectedItemListener();
@@ -62,38 +62,31 @@ public class ViewAllTasksActivity extends AppCompatActivity {
     private void spinnerSelectedItemListener() {
         spinnerRole.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long l) {
                 String selectedItem = parentView.getItemAtPosition(position).toString();
-                if(selectedItem.equals("Responsible")) {
-                    getTasksResponsibleFor();
-                } else if(selectedItem.equals("Accountable")) {
-                    getTasksAccountableFor();
+                if(selectedItem.equals("Attended")) {
+                    getMeetingsAttended();
                 } else if(selectedItem.equals("Created")) {
-                    getTasksCreated();
+                    getMeetingsCreated();
                 }
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
+            public void onNothingSelected(AdapterView<?> adapterView) {
                 //
             }
         });
     }
 
-    public void getTasksResponsibleFor() {
-        recyclerView = findViewById(R.id.recyclerview);
-        adapter = new TaskAdapter(this);
+    public void getMeetingsAttended() {
+        recyclerView = findViewById(R.id.recyclerviewMeeting);
+        adapter = new MeetingAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mAppViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
         try {
-            mAppViewModel.getAllResponsibleTasks().observe(this, new Observer<List<Task>>() {
-                @Override
-                public void onChanged(@Nullable List<Task> tasks) {
-                    adapter.setTasks(tasks);
-                }
-            });
+            //
         } catch (Exception e) {
             //
         }
@@ -102,46 +95,9 @@ public class ViewAllTasksActivity extends AppCompatActivity {
                 new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        int task_id = Integer.parseInt(((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tvTaskId)).getText().toString());
-                        intent = new Intent(ViewAllTasksActivity.this, ViewSingleTaskActivity.class);
-                        intent.putExtra("task id", task_id);
-                        startActivity(intent);
-                    }
-
-                    @Override
-                    public void onLongItemClick(View view, int position) {
-                        //
-                    }
-                })
-        );
-
-    }
-
-    public void getTasksAccountableFor() {
-        recyclerView = findViewById(R.id.recyclerview);
-        adapter = new TaskAdapter(this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        mAppViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
-        try {
-            mAppViewModel.getAllAccountableTasks().observe(this, new Observer<List<Task>>() {
-                @Override
-                public void onChanged(@Nullable List<Task> tasks) {
-                    adapter.setTasks(tasks);
-                }
-            });
-        } catch (Exception e) {
-            //
-        }
-
-        recyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        int task_id = Integer.parseInt(((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tvTaskId)).getText().toString());
-                        intent = new Intent(ViewAllTasksActivity.this, ViewSingleTaskActivity.class);
-                        intent.putExtra("task id", task_id);
+                        int meeting_id = Integer.parseInt(((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tvMeetingId)).getText().toString());
+                        intent = new Intent(ViewAllMeetingsActivity.this, ViewSingleMeetingActivity.class);
+                        intent.putExtra("meeting id", meeting_id);
                         startActivity(intent);
                     }
 
@@ -153,30 +109,31 @@ public class ViewAllTasksActivity extends AppCompatActivity {
         );
     }
 
-    public void getTasksCreated() {
-        recyclerView = findViewById(R.id.recyclerview);
-        adapter = new TaskAdapter(this);
+    public void getMeetingsCreated() {
+        recyclerView = findViewById(R.id.recyclerviewMeeting);
+        adapter = new MeetingAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mAppViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
         try {
-            mAppViewModel.getAllCreatedTasks().observe(this, new Observer<List<Task>>() {
+            mAppViewModel.getAllCreatedMeetings().observe(this, new Observer<List<Meeting>>() {
                 @Override
-                public void onChanged(@Nullable List<Task> tasks) {
-                    adapter.setTasks(tasks);
+                public void onChanged(@Nullable List<Meeting> meetings) {
+                    adapter.setMeetings(meetings);
                 }
             });
         } catch (Exception e) {
             //
         }
+
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        int task_id = Integer.parseInt(((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tvTaskId)).getText().toString());
-                        intent = new Intent(ViewAllTasksActivity.this, ViewSingleTaskActivity.class);
-                        intent.putExtra("task id", task_id);
+                        int meeting_id = Integer.parseInt(((TextView) recyclerView.findViewHolderForAdapterPosition(position).itemView.findViewById(R.id.tvMeetingId)).getText().toString());
+                        intent = new Intent(ViewAllMeetingsActivity.this, ViewSingleMeetingActivity.class);
+                        intent.putExtra("meeting id", meeting_id);
                         startActivity(intent);
                     }
 
@@ -190,12 +147,12 @@ public class ViewAllTasksActivity extends AppCompatActivity {
 
     // create the toolbar
     private void createToolbar() {
-        mToolbar = findViewById(R.id.tb_main_activity);
+        mToolbar = findViewById(R.id.tb_view_all_meetings);
         if(mToolbar != null) {
             setSupportActionBar(mToolbar);
             getSupportActionBar().setTitle(null); // remove the default title for the toolbar
             toolbarTitle = findViewById(R.id.toolbar_title);
-            toolbarTitle.setText("View All Tasks");
+            toolbarTitle.setText("View All Meetings");
         }
 
         // add the navigation drawer button to the toolbar
@@ -253,9 +210,10 @@ public class ViewAllTasksActivity extends AppCompatActivity {
 
     // set the DrawerListener
     private void setupDrawerListener() {
-        mDrawerToggle = new SmoothActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close);
+        mDrawerToggle = new ViewAllMeetingsActivity.SmoothActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
+
 
     private void selectItem(int position) {
         switch (position) {
@@ -263,7 +221,7 @@ public class ViewAllTasksActivity extends AppCompatActivity {
                 mDrawerToggle.runWhenIdle(new Runnable() {
                     @Override
                     public void run() {
-                        intent = new Intent(ViewAllTasksActivity.this, MainActivity.class);
+                        intent = new Intent(ViewAllMeetingsActivity.this, MainActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -271,14 +229,21 @@ public class ViewAllTasksActivity extends AppCompatActivity {
                 break;
 
             case R.id.nav_view_tasks:
-                closeNavDrawer();
+                mDrawerToggle.runWhenIdle(new Runnable() {
+                    @Override
+                    public void run() {
+                        intent = new Intent(ViewAllMeetingsActivity.this, ViewAllTasksActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                mDrawerLayout.closeDrawers();
                 break;
 
             case R.id.nav_create_task:
                 mDrawerToggle.runWhenIdle(new Runnable() {
                     @Override
                     public void run() {
-                        intent = new Intent(ViewAllTasksActivity.this, CreateTaskActivity.class);
+                        intent = new Intent(ViewAllMeetingsActivity.this, CreateTaskActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -286,14 +251,14 @@ public class ViewAllTasksActivity extends AppCompatActivity {
                 break;
 
             case R.id.nav_view_meetings:
-                // ViewMeetingActivity
+                closeNavDrawer();
                 break;
 
             case R.id.nav_create_meeting:
                 mDrawerToggle.runWhenIdle(new Runnable() {
                     @Override
                     public void run() {
-                        intent = new Intent(ViewAllTasksActivity.this, CreateMeetingActivity.class);
+                        intent = new Intent(ViewAllMeetingsActivity.this, CreateMeetingActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -306,7 +271,7 @@ public class ViewAllTasksActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewAllTasksActivity.this, CreateTaskActivity.class);
+                Intent intent = new Intent(ViewAllMeetingsActivity.this, CreateTaskActivity.class);
                 startActivityForResult(intent, CREATE_TASK_ACTIVITY_REQUEST_CODE);
             }
         });

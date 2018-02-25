@@ -123,7 +123,7 @@ public class CreateTaskActivity extends AppCompatActivity
             setSupportActionBar(mToolbar);
             getSupportActionBar().setTitle(null); // remove the default title for the toolbar
             tvToolbarTitle = findViewById(R.id.toolbar_title);
-            tvToolbarTitle.setText("Create New Activity");
+            tvToolbarTitle.setText("Create New Task");
         }
 
     }
