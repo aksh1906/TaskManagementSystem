@@ -39,7 +39,7 @@ public class ViewAllMeetingsActivity extends AppCompatActivity {
     private NavigationView mNavigationView;
     private SmoothActionBarDrawerToggle mDrawerToggle;
     private FloatingActionButton fab;
-    private static final int CREATE_TASK_ACTIVITY_REQUEST_CODE = 1;
+    private static final int CREATE_MEETING_ACTIVITY_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -223,6 +223,7 @@ public class ViewAllMeetingsActivity extends AppCompatActivity {
                     public void run() {
                         intent = new Intent(ViewAllMeetingsActivity.this, MainActivity.class);
                         startActivity(intent);
+                        ViewAllMeetingsActivity.this.finish();
                     }
                 });
                 mDrawerLayout.closeDrawers();
@@ -234,6 +235,7 @@ public class ViewAllMeetingsActivity extends AppCompatActivity {
                     public void run() {
                         intent = new Intent(ViewAllMeetingsActivity.this, ViewAllTasksActivity.class);
                         startActivity(intent);
+                        ViewAllMeetingsActivity.this.finish();
                     }
                 });
                 mDrawerLayout.closeDrawers();
@@ -245,6 +247,7 @@ public class ViewAllMeetingsActivity extends AppCompatActivity {
                     public void run() {
                         intent = new Intent(ViewAllMeetingsActivity.this, CreateTaskActivity.class);
                         startActivity(intent);
+                        ViewAllMeetingsActivity.this.finish();
                     }
                 });
                 mDrawerLayout.closeDrawers();
@@ -262,6 +265,8 @@ public class ViewAllMeetingsActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+                mDrawerLayout.closeDrawers();
+                break;
         }
     }
 
@@ -271,8 +276,8 @@ public class ViewAllMeetingsActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewAllMeetingsActivity.this, CreateTaskActivity.class);
-                startActivityForResult(intent, CREATE_TASK_ACTIVITY_REQUEST_CODE);
+                Intent intent = new Intent(ViewAllMeetingsActivity.this, CreateMeetingActivity.class);
+                startActivityForResult(intent, CREATE_MEETING_ACTIVITY_REQUEST_CODE);
             }
         });
     }

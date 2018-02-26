@@ -203,7 +203,7 @@ public class CreateMeetingActivity extends AppCompatActivity
         String creator = "Akshat"; // placeholder
 
         Meeting meeting = new Meeting(meetingId, meetingTitle, meetingType, meetingDescription,
-                meetingDate, meetingTime, meetingVenue, creator, meetingFrequency);
+                meetingDate, meetingTime, meetingVenue, creator, conductedFor, meetingFrequency);
 
         mAppViewModel.insertMeeting(meeting);
 

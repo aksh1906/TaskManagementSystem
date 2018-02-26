@@ -265,6 +265,7 @@ public class ViewAllTasksActivity extends AppCompatActivity {
                     public void run() {
                         intent = new Intent(ViewAllTasksActivity.this, MainActivity.class);
                         startActivity(intent);
+                        ViewAllTasksActivity.this.finish();
                     }
                 });
                 mDrawerLayout.closeDrawers();
@@ -286,7 +287,15 @@ public class ViewAllTasksActivity extends AppCompatActivity {
                 break;
 
             case R.id.nav_view_meetings:
-                // ViewMeetingActivity
+                mDrawerToggle.runWhenIdle(new Runnable() {
+                    @Override
+                    public void run() {
+                        intent = new Intent(ViewAllTasksActivity.this, ViewAllMeetingsActivity.class);
+                        startActivity(intent);
+                        ViewAllTasksActivity.this.finish();
+                    }
+                });
+                mDrawerLayout.closeDrawers();
                 break;
 
             case R.id.nav_create_meeting:
@@ -297,6 +306,8 @@ public class ViewAllTasksActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+                mDrawerLayout.closeDrawers();
+                break;
         }
     }
 

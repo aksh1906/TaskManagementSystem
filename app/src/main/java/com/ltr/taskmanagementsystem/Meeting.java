@@ -49,14 +49,14 @@ public class Meeting {
     @ColumnInfo(name="creator")
     private String mCreator;
 
-//    @ColumnInfo(name="dept_conducted_for")
-//    private String mDept_conducted_for;
+    @ColumnInfo(name="dept_conducted_for")
+    private String mDept_conducted_for;
 
     @ColumnInfo(name="frequency")
     private String mFrequency;
 
     public Meeting(int meeting_id, String title, String type, String description, String meeting_date,
-                   String meeting_time, String venue, String creator, String frequency) {
+                   String meeting_time, String venue, String creator, String dept_conducted_for, String frequency) {
         this.mMeeting_id = meeting_id;
         this.mTitle = title;
         this.mType = type;
@@ -65,7 +65,7 @@ public class Meeting {
         this.mMeeting_time = meeting_time;
         this.mVenue = venue;
         this.mCreator = creator;
-//        this.mDept_conducted_for = dept_conducted_for;
+        this.mDept_conducted_for = dept_conducted_for;
         this.mFrequency = frequency;
     }
 
@@ -100,7 +100,7 @@ public class Meeting {
 
     public String getCreator() { return mCreator; }
 
-//    public String getDept_conducted_for() { return mDept_conducted_for; }
+    public String getDept_conducted_for() { return mDept_conducted_for; }
 
     public String getFrequency() {
         return mFrequency;
