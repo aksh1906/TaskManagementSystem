@@ -207,7 +207,7 @@ public class CreateMeetingActivity extends AppCompatActivity
 
         mAppViewModel.insertMeeting(meeting);
 
-        Intent intent = new Intent(CreateMeetingActivity.this, MainActivity.class);
+        Intent intent = new Intent(CreateMeetingActivity.this, ViewAllMeetingsActivity.class);
         startActivity(intent);
         CreateMeetingActivity.this.finish();
         Toast toast = Toast.makeText(getApplicationContext(), "Meeting Created", Toast.LENGTH_LONG);

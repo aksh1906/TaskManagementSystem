@@ -189,7 +189,7 @@ public class CreateTaskActivity extends AppCompatActivity
                 meetingLinkedWith, reminderRequired, percentComplete);
         mAppViewModel.insertTask(task);
 
-        Intent intent = new Intent(CreateTaskActivity.this, MainActivity.class);
+        Intent intent = new Intent(CreateTaskActivity.this, ViewAllTasksActivity.class);
         startActivity(intent);
         CreateTaskActivity.this.finish();
         Toast toast = Toast.makeText(getApplicationContext(), "Task Created", Toast.LENGTH_LONG);
