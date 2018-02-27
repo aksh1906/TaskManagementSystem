@@ -37,7 +37,8 @@
         <activity android:name=".ViewAllTasksActivity" />
         <activity android:name=".ViewSingleTaskActivity" />
         <activity android:name=".ViewAllMeetingsActivity" />
-        <activity android:name=".ViewSingleMeetingActivity"></activity>
+        <activity android:name=".ViewSingleMeetingActivity" />
+        <activity android:name=".RegisterActivity"></activity>
     </application>
 
 </manifest>

@@ -186,4 +186,14 @@
         <item>Attended</item>
         <item>Created</item>
     </string-array>
+
+    <string name="text_register">Register</string>
+    <string name="text_enter_username">Choose a Username:</string>
+    <string name="edit_enter_username">Username</string>
+    <string name="text_enter_password">Enter Password:</string>
+    <string name="edit_enter_password">Password</string>
+    <string name="text_confirm_password">Confirm Password:</string>
+    <string name="edit_confirm_password">Confirm Password</string>
+    <string name="text_create_account">Don\'t have an account? Create one.</string>
+    <string name="text_already_have_account">Already have an account? Log In.</string>
 </resources>

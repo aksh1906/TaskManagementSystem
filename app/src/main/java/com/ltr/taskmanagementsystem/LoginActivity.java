@@ -1,9 +1,12 @@
 package com.ltr.taskmanagementsystem;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -22,13 +25,15 @@ public class LoginActivity extends AppCompatActivity
         implements OnClickListener {
 
     private EditText username, password;
-    private TextView incorrectDetails, forgotPassword;
+    private TextView incorrectDetails, createAccount;
     private Button submitButton;
     private CheckBox rememberMe;
     private String uname, passwd;
     private boolean saveLogin;
     private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPreferencesEditor;
+    private DatabaseHelper databaseHelper;
+    private ProgressDialog mProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +42,26 @@ public class LoginActivity extends AppCompatActivity
 
         submitButton = findViewById(R.id.btnSubmit);
         submitButton.setOnClickListener(this);
+        createAccount = findViewById(R.id.tvCreateAccount);
+        createAccount.setOnClickListener(this);
+
+        mProgress = new ProgressDialog(this);
+        mProgress.setTitle("Logging In");
+        mProgress.setMessage("Please wait...");
+        mProgress.setCancelable(false);
+        mProgress.setIndeterminate(true);
 
         username = findViewById(R.id.etUsername);
         password = findViewById(R.id.etPassword);
         incorrectDetails = findViewById(R.id.tvIncorrectUsernamePassword);
-        forgotPassword = findViewById(R.id.tvForgotUsernamePassword);
+        createAccount = findViewById(R.id.tvCreateAccount);
         rememberMe = findViewById(R.id.chkRememberMe);
         loginPreferences = getSharedPreferences("loginPreferences", MODE_PRIVATE);
         loginPreferencesEditor = loginPreferences.edit();
 
         username.addTextChangedListener(usernameWatcher); //TextWatcher for the username EditText
         password.addTextChangedListener(passwordWatcher); //TextWatcher for the password EditText
+        databaseHelper = new DatabaseHelper(this);
 
         checkFieldsForEmptyValues();  // disables the submitButton when the activity is created, as fields are empty by default
 
@@ -129,44 +143,63 @@ public class LoginActivity extends AppCompatActivity
     }
 
     public void onClick(View view) {
-        if(view == submitButton) {
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(username.getWindowToken(), 0);
+        switch (view.getId()) {
+            case R.id.btnSubmit:
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(username.getWindowToken(), 0);
 
-            uname = username.getText().toString();
-            passwd = password.getText().toString();
+                uname = username.getText().toString();
+                passwd = password.getText().toString();
 
-            if(rememberMe.isChecked()) {
-                loginPreferencesEditor.putBoolean("saveLogin", true);
-                loginPreferencesEditor.putString("username", uname);
-                loginPreferencesEditor.putString("password", passwd);
-                loginPreferencesEditor.commit();
-            } else {
-                loginPreferencesEditor.clear();
-                loginPreferencesEditor.commit();
-            }
+                if(rememberMe.isChecked()) {
+                    loginPreferencesEditor.putBoolean("saveLogin", true);
+                    loginPreferencesEditor.putString("username", uname);
+                    loginPreferencesEditor.putString("password", passwd);
+                    loginPreferencesEditor.commit();
+                } else {
+                    loginPreferencesEditor.clear();
+                    loginPreferencesEditor.commit();
+                }
+                login();
+                break;
 
-            login();
+            case R.id.tvCreateAccount:
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 
     public void login() {
 
         // used to check the user's login details
+        mProgress.show();
 
         uname = username.getText().toString();
         passwd = password.getText().toString();
 
-        if(uname.equals("admin") && passwd.equals("password")) {  // placeholder, not final
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            LoginActivity.this.finish();
-        } else {
-            incorrectDetails.setVisibility(View.VISIBLE);
-            incorrectDetails.setText(R.string.text_incorrect_username_password);
-            incorrectDetails.setError("");
-            forgotPassword.setVisibility(View.VISIBLE);
-        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                mProgress.dismiss();
+            }
+        }, 3000); // 3000 milliseconds delay
+
+        this.mProgress.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                if(databaseHelper.checkUser(uname.trim(),
+                        passwd.trim())) {
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    LoginActivity.this.finish();
+                } else {
+                    incorrectDetails.setVisibility(View.VISIBLE);
+                    incorrectDetails.setText(R.string.text_incorrect_username_password);
+                    incorrectDetails.setError("");
+                }
+            }
+        });
     }
 
     @Override

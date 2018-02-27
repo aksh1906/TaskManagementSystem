@@ -8,35 +8,27 @@
     tools:context="com.ltr.taskmanagementsystem.LoginActivity">
 
     <LinearLayout
+        android:id="@+id/llRegister"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="30dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
+        android:paddingTop="30dp"
         android:focusable="true"
-        android:focusableInTouchMode="true">
-
-        <ImageView
-            android:id="@+id/ivLoginImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center_horizontal"
-            android:contentDescription="@string/image_desc"
-            app:srcCompat="@mipmap/ic_launcher" />
+        android:focusableInTouchMode="true" >
 
         <TextView
-            android:id="@+id/tvLogin"
+            android:id="@+id/tvEnterUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_login"
+            android:text="@string/text_register"
             android:textColor="@color/login_page_text_color"
             android:textSize="24sp"
-            android:layout_marginTop="18dp"
             android:layout_gravity="center"/>
 
         <TextView
-            android:id="@+id/tvIncorrectUsernamePassword"
+            android:id="@+id/tvUsernameExists"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/invalid_username_password"
@@ -49,7 +41,7 @@
             android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_username"
+            android:text="@string/text_enter_username"
             android:textColor="@color/login_page_text_color"
             android:textSize="18sp"
             android:layout_marginTop="24dp"
@@ -60,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/login_page_text_color"
-            android:hint="@string/edit_username"
+            android:hint="@string/edit_enter_username"
             android:inputType="text"
             android:textColor="@android:color/white"
             android:textColorHint="@color/hint_color"
@@ -70,7 +62,7 @@
             android:id="@+id/tvPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_password"
+            android:text="@string/text_enter_password"
             android:textColor="@color/login_page_text_color"
             android:textSize="18sp"
             android:layout_marginTop="16dp"
@@ -81,43 +73,58 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/login_page_text_color"
-            android:hint="@string/edit_password"
+            android:hint="@string/edit_enter_password"
             android:inputType="textPassword"
             android:textColor="@android:color/white"
             android:textColorHint="@color/hint_color"
             android:layout_gravity="start"/>
 
-        <CheckBox
-            android:id="@+id/chkRememberMe"
-            style="@android:style/Theme.Material.Light"
+        <TextView
+            android:id="@+id/tvConfirmPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="@color/login_page_text_color"
-            android:text="@string/button_rememberme"
+            android:text="@string/text_confirm_password"
             android:textColor="@color/login_page_text_color"
-            android:textSize="14sp"
-            android:layout_marginTop="8dp"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"
+            android:gravity="start"/>
+
+        <EditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/login_page_text_color"
+            android:hint="@string/edit_confirm_password"
+            android:inputType="textPassword"
+            android:textColor="@android:color/white"
+            android:textColorHint="@color/hint_color"
             android:layout_gravity="start"/>
 
+        <TextView
+            android:id="@+id/tvPasswordsMatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_red_light"/>
+
         <Button
-            android:id="@+id/btnSubmit"
+            android:id="@+id/btnRegister"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:foreground="?android:attr/selectableItemBackground"
             android:background="@drawable/button_rounded_corners_disabled"
-            android:text="@string/button_submit"
+            android:text="@string/text_register"
             android:textColor="@android:color/black"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="60dp"
             android:layout_gravity="center"/>
 
         <TextView
-            android:id="@+id/tvCreateAccount"
+            android:id="@+id/tvAlreadyHaveAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:text="@string/text_create_account"
+            android:text="@string/text_already_have_account"
             android:textColor="@color/login_page_text_color"
             android:textSize="18sp"/>
 
